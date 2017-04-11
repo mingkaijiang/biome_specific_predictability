@@ -77,6 +77,9 @@ match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
 # generate temp and prec classes and ie factor
 plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
+####### Next to combine all the summary statistical functions and plottings together 
+
+
 # Calculate summary df
 summary <- summaryPrep(plotDF)
 
