@@ -1,22 +1,22 @@
-#### Main program to compute the study
+#### Main program 
+#### Purpose: 
+#### 1. compute temperature and precipitation predictability based on CRU dataset
+#### 2. compare mean annual climate statistics and those of the predictability
+#### 3. Assign biome information and constrast spatial differences
+#### 4. Conduct case studies to differentiate the biome-specific climate patterns
+#### 5. perform statistical analyses to identify the role of predictability 
+#### 6. Make summary tables and manuscript plots
+####
+#### Author: Mingkai Jiang (m.jiang@westernsydney.edu.au)
+#### 
 
+####################################################################################
+#### Make sure everything is clear
+rm(list=ls(all=TRUE))
 
-####---- prepare wk spaces and libraries ----####
+#### prepare wk spaces and libraries
 source("R/prepare_R.R")
 
-
-####################################################################################
-##Calculate climate predictability
-##Script version 1
-##Created by MJ 
-##Last modified on 11-06-2016
-####################################################################################
-## Setting directory paths
-setwd("~/Documents/Predictability_Project/P4_Literature_review/data/CRU")
-
-inDir <- paste(getwd(), "/raw_data", sep="")
-destDir <- "~/Documents/Predictability_Project/P4_Literature_review/data/CRU/"
-dir.create(destDir, showWarnings = FALSE)
 
 ####################################################################################
 ## process nc file to csv file
@@ -565,3 +565,6 @@ pdfTOpng(FileDir)
 ####################################################################################
 # turn warning message back on
 options(warn=0)
+
+#### Clear workspace
+rm(list=ls(all=TRUE))

@@ -28,3 +28,37 @@ pacman::p_load(ncdf4,
 #### Sourcing all R files in the function subdirectory
 sourcefiles <- dir("Functions", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z in sourcefiles)source(z)
+
+
+#### Create analyses folders if not exist
+if(!dir.exists("/analyses")) {
+    dir.create(paste0(getwd(), "/analyses"))
+}
+
+#### Create plot folders if not exist
+if(!dir.exists("/Plots")) {
+    dir.create(paste0(getwd(), "/Plots"))
+}
+
+#### Create Tables folders if not exist
+if(!dir.exists("/Tables")) {
+    dir.create(paste0(getwd(), "/Tables"))
+}
+
+#### Create data folders if not exist
+if(!dir.exists("/data")) {
+    dir.create(paste0(getwd(), "/data"))
+}
+
+#### store working directory information
+cwd <- getwd()
+
+#### store data path
+inDir <- paste0(cwd, "/data/raw_data")
+plotDir <- paste0(cwd, "/Plots")
+tableDir <- paste0(cwd, "/Tables")
+analysesDir <- paste0(cwd, "/analyses")
+
+#### Create the necessary sub-folders
+dir.create(inDir, showWarnings = FALSE)
+
