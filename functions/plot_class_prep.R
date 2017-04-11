@@ -1,6 +1,14 @@
 ####################################################################################
 ## Prepare classes for plotting temp and prec data
-classPrep <- function(inDF) {
+classPrep <- function(inPath) {
+    
+    # read in full dataset (gridded temperature means, precipitation means and sums, temp and prec PCM)
+    inDF <- read.table(paste0(dataDir, "/biome_temp_prec_full.csv"), 
+                       header=T,sep=",")
+    
+    colnames(inDF) <- c("CRU_Site", "lon", "lat", "tempP",
+                        "tempC", "tempM", "BIOME", "precP",
+                        "precC", "precM", "temp", "prec_sum", "prec_mean")
     
     # prepare breaking points for temperature and precipitation
     temp.lab <- c("<-4.7", "-2.1", "0.5", "3.0", "5.6", "8.2",
@@ -38,5 +46,15 @@ classPrep <- function(inDF) {
                                                                                             ifelse(plotDF$prec_sum >= 1801 & plotDF$prec_sum < 4142, 11,
                                                                                                    12)))))))))))
     
-    return(plotDF)
+    inDF <- plotDF
+    
+    #IE for temperature
+    inDF$tempMC <- inDF$tempM/inDF$tempC
+    inDF$tempIE <- ifelse(inDF$tempMC >=1, 2, 1)
+    
+    #IE for precipitation
+    inDF$precMC <- inDF$precM/inDF$precC
+    inDF$precIE <- ifelse(inDF$precMC >=1, 2, 1)
+    
+    return(inDF)
 }

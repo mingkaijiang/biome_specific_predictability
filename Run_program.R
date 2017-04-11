@@ -73,26 +73,9 @@ match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
              fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
 ####################################################################################
-################# Main program for plotting ########################################
-
-# read in full dataset (gridded temperature means, precipitation means and sums, temp and prec PCM)
-myDF <- read.table(paste(destDir, "/biome_temp_prec_full.csv", sep=""), 
-                   header=T,sep=",")
-
-colnames(myDF) <- c("CRU_Site", "lon", "lat", "tempP",
-                    "tempC", "tempM", "BIOME", "REALM", "precP",
-                    "precC", "precM", "temp", "prec_sum", "prec_mean")
-
-
-# Categorize temp and prec climate
-myDF$temp_group <- round_any(myDF$temp, 10, f=ceiling)
-myDF$prec_group <- round_any(myDF$prec_sum, 1000, f=ceiling)
-
-# generate temp and prec classes
-newDF <- classPrep(myDF)
-
-# Calculate Ie for temp and prec
-plotDF <- iefactor(newDF)
+#### Plotting
+# generate temp and prec classes and ie factor
+plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
 # Calculate summary df
 summary <- summaryPrep(plotDF)
