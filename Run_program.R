@@ -152,36 +152,37 @@ dev.off()
 
 
 ####################################################################################
-## kernel density plot
-pdf(paste(getwd(), "/kernel_density.pdf", sep=""))
+#### Conduct biome-specific analyses and plottings
+
+### Step 1.  Plot all data points on 2-d space
+# 2-d basic plot
+pdf(paste0(analysesDir, "/Biome_all_normal.pdf"))
+plot_biome_all(plotDF)
+dev.off()
+
+# 2-d bagplot
+pdf(paste0(analysesDir, "/Biome_bagplot_normal.pdf"),
+    width = 22, height = 26)
+biome_bag_plot(plotDF)
+dev.off()
+
+# 2-d density plot  - takes very long to run!
+pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
+    width = 22, height = 26)
+biome_density_plot(plotDF)
+dev.off()
+
+
+### Step 2. kernel density plot
+pdf(paste0(analysesDir, "/kernel_density.pdf"))
 kernel_multi(plotDF)
 dev.off()
 
-## biome specific Ie factor plot
+### Step 3. biome specific Ie factor plot
 pdf(paste0(analysesDir, "/biome_Ie.pdf"))
 Ieplot(plotDF)
 dev.off()
 
-####################################################################################
-# Plot all data 2-d temperature vs. precipitation
-# and temperature P vs. precipitation P graphs
-pdf(paste(getwd(), "Biome_all_normal.pdf", sep="/"))
-biomeAll(plotDF)
-dev.off()
-
-# Plot biome specific 2-d temperature vs. precipitation, 
-# and temperature predictability vs. precipitation predictability graphs
-pdf(paste(getwd(), "Biome_bagplot_normal.pdf", sep="/"),
-    width = 22, height = 26)
-biomeBagPlot(plotDF)
-dev.off()
-
-# Plot biome specific 2-d temperature vs. precipitation, 
-# and temperature predictability vs. precipitation predictability density graphs
-pdf(paste(getwd(), "Biome_density_normal.pdf", sep="/"),
-    width = 22, height = 26)
-biomeDensityPlot(plotDF)
-dev.off()
 
 
 ####################################################################################

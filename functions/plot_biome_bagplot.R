@@ -1,6 +1,6 @@
 ####################################################################################
 ## plotting bagplot of all data range
-biomeBagPlot <- function(inDF) {
+biome_bag_plot <- function(inDF) {
     ## Plotting biome-specific 2d graphs for:
     ## 1. temperature vs. precipitation
     ## 2. temperature predictability vs. precipitation predictability

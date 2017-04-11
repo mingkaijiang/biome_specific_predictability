@@ -1,6 +1,6 @@
 ####################################################################################
 ## plotting bagplot of all data range
-biomeDensityPlot <- function(inDF) {
+biome_density_plot <- function(inDF) {
     ## Plotting biome-specific density graphs for:
     ## 1. temperature vs. precipitation
     ## 2. temperature predictability vs. precipitation predictability

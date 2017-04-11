@@ -1,6 +1,6 @@
 ####################################################################################
 ## plotting temp vs. prec all data onto same graph
-biomeAll <- function(inDF) {
+plot_biome_all <- function(inDF) {
     ## Plotting biome-specific 2d graphs for:
     ## 1. temperature vs. precipitation
     ## 2. temperature predictability vs. precipitation predictability
