@@ -35,7 +35,7 @@ summaryPrep <- function(inDF) {
     }
     
     ## save onto disk
-    write.table(summary, paste0(dataDir, "/summary_statistics.csv"),
+    write.table(summary, paste0(tableDir, "/summary_statistics.csv"),
                 col.names=T,row.names=F, sep=",")
     
     return(summary)
