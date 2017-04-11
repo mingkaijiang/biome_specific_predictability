@@ -183,7 +183,7 @@ pdf(paste0(analysesDir, "/biome_Ie.pdf"))
 Ieplot(plotDF)
 dev.off()
 
-### Step 4. PCA analysis
+### Step 4. PCA analysis  - takes very long to run!
 # PCA analysis for all data, and output PC12 onto CRU grids
 pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
 TotalPCA(plotDF)
@@ -229,86 +229,6 @@ pdf(paste(getwd(), "/Spatial_50th.pdf", sep=""),
 spatial50(abs_sub, p_sub)
 dev.off()
 
-####################################################################################
-## Project NDVI data onto CRU dataframe
-outPath <- paste(getwd(), "/CRU_NDVI_gridded.csv", sep="")
-ndvi_to_cru(plotDF, outPath)
-
-newDF <- read.table(paste(getwd(), "/CRU_NDVI_gridded.csv", sep=""),
-                    header=T,sep=",")
-
-## Statistical tests on NDVI
-pdf(paste(getwd(), "/NDVI_statistical_tests.pdf", sep=""),
-    width = 10, height = 8)
-ndvi_tests(newDF)
-dev.off()
-
-####################################################################################
-## Process species richness data and save onto CRU dataframe
-
-inFile <- "/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/SpeciesRichness/extract"
-outFile <- "/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/SpeciesRichness/species_richness_cru.csv"
-
-richnessCRU(inFile, outFile)
-
-spDF <- read.table(outFile, header=T,sep=",")
-####################################################################################
-## Correlate species richness with CRU climates
-
-ndviDF <- read.table(paste(getwd(), "/CRU_NDVI_gridded.csv", sep=""),
-                     header=T,sep=",")
-
-pdf(paste(getwd(), "/bird_richness_statistical_tests.pdf", sep=""),
-    width = 12, height = 8)
-species_analysis(spDF, plotDF, ndviDF) 
-dev.off()
-
-####################################################################################
-## Process USDA FIA dataset
-require(data.table)
-inFile <- "/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/USDA_FID"
-predFile <- "/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU"
-
-## read in file
-cor <- fread(paste(inFile, "/PLOTGEOM.csv", sep=""),
-             header=T,sep=",")
-fid <- fread(paste(inFile, "/TREE.csv", sep=""),
-             header=T,sep=",")
-predDF <- read.table(paste(predFile, "/biome_temp_prec_full.csv", sep=""), 
-                     header=T,sep=",")
-
-# Compute all species self-thinning rule, for information only
-#fia_st_all(cor, fid)
-
-# Compute species group level self-thinning rule
-species_model <- fia_st_species(fid)
-write.table(species_model, paste(inFile, "/species_model.csv",sep=""),
-            col.names=T,row.names=F,sep=",")
-
-# Compute plot level self-thinning statistics, then save onto CRU dataframe
-plot_statistics <- fia_st_plot(cor, fid)
-write.table(plot_statistics, paste(inFile, "/plot_model_summary.csv",sep=""),
-            col.names=T,row.names=F,sep=",")
-
-####################################################################################
-## Project CRU climate onto fia exponent dataset
-fiaDF <- read.table(paste(inFile, "/plot_model_summary.csv",sep=""),
-                    header=T,sep=",")
-
-# CRU grids added
-fiaCRU <- exp_to_cru(fiaDF)
-
-# aggregate exponents onto CRU grids
-cruPCA <- read.table(paste(destDir, "/CRU_with_PCA.csv", sep=""),
-                     header=T,sep=",")
-
-fia_agg <- aggreCRU(fiaCRU, cruPCA)
-
-# plot climate impacts
-pdf(paste(getwd(), "/FIA_statistical_tests.pdf", sep=""),
-    width = 8, height = 8)
-fia_plot(fia_agg)
-dev.off()
 
 ####################################################################################
 # create pdf file of Australia maps
