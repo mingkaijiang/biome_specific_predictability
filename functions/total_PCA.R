@@ -3,8 +3,8 @@
 TotalPCA <- function(inDF) {
     
     # library
-    require(vegan)
-    require(ks)
+    #require(vegan)
+    #require(ks)
     
     # read in file
     myDF <- inDF
@@ -60,5 +60,6 @@ TotalPCA <- function(inDF) {
     plot(est,abs.cont=cl[3], labels=c(0.99),labcex=0.75, add=TRUE, lwd=0.5, col="grey60")
     plot(fit, cex=0.90, col=1, labels=list(vectors = c("temp", "prec", "temp P", "prec P")))
     
-    return(myDF)
+    write.table(myDF, paste(dataDir, "/CRU_with_PCA.csv", sep=""),
+                col.names=T,row.names=F,sep=",")
 }

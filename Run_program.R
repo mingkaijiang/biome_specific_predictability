@@ -183,28 +183,25 @@ pdf(paste0(analysesDir, "/biome_Ie.pdf"))
 Ieplot(plotDF)
 dev.off()
 
-
-
-####################################################################################
-## PCA analysis for each biome using all data
-pdf(paste(getwd(), "/PCA_analysis.pdf", sep=""))
-
-## PCA_summary table includes:
-## 1. Biome specific PC1 and PC2 variance explained
-## 2. Biome specific correlation coefficients between PC and climate variables
-PCA_summary<-BiomePCA(plotDF)
+### Step 4. PCA analysis
+# PCA analysis for all data, and output PC12 onto CRU grids
+pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
+TotalPCA(plotDF)
 dev.off()
 
-####################################################################################
-## PCA analysis for all data, and output PC12 onto CRU grids
-pdf(paste(getwd(), "/PCA_all_analysis.pdf", sep=""))
 
-## PCA_summary table includes:
-cruPCA<-TotalPCA(plotDF)
+# biome specific PCA analysis
+pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
+BiomePCA(plotDF)
 dev.off()
 
-write.table(cruPCA, paste(destDir, "/CRU_with_PCA.csv", sep=""),
-            col.names=T,row.names=F,sep=",")
+
+
+
+
+
+
+
 
 ####################################################################################
 ## Prepare subset of data include 50th percentile closest to mean of:

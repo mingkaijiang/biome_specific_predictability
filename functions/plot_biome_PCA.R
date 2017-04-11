@@ -3,8 +3,8 @@
 BiomePCA <- function(inDF) {
     
     # library
-    require(vegan)
-    require(ks)
+    #require(vegan)
+    #require(ks)
     
     # read in file
     myDF <- inDF
@@ -84,5 +84,5 @@ BiomePCA <- function(inDF) {
         title(paste(biome[i]))
     }
     
-    return(outDF)
+    #return(outDF)
 }
