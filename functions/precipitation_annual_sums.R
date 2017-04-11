@@ -1,8 +1,10 @@
 ####################################################################################
 ## Calculate annual mean and annual sums for precipitation
 precMeanSums <- function(inFile, outFile) {
-    precdf <- read.table(inFile, 
+    precdf <- fread(inFile, 
                          header=T, sep=",")
+    
+    precdf <- as.data.frame(precdf)
     
     precdf$annual_sum <- round(rowSums(precdf[,5:16]),2)
     precdf$annual_mean <- round(rowMeans(precdf[,5:16]),2)

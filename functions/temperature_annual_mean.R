@@ -2,8 +2,11 @@
 ## Calculate annual mean for temperature
 tempMeans <- function(inFile, outFile) {
     
-    tempdf <- read.table(inFile, 
+    tempdf <- fread(inFile, 
                          header=T, sep=",")
+    
+    tempdf <- as.data.frame(tempdf)
+    
     tempdf$annual_mean <- round(rowMeans(tempdf[,5:16]),2)
     
     outdf <- subset(tempdf, year == 1901)

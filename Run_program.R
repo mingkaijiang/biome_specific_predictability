@@ -50,20 +50,17 @@ source("R/prepare_R.R")
 #
 ## precipitation
 #PCM_prec(sourceDir = dataDir, destDir = dataDir)
+#
+#### Step 4. Calculate climate annual mean and annual sums
+## temperature
+#tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
+#          outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
+#
+## precipitation
+#precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
+#             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
-####################################################################################
-## Calculate climate annual mean and annual sums
-
-# temperature
-tempMeans(inFile=paste(getwd(), "/temp_DF.csv", sep=""),
-          outFile=paste(destDir, "temp_DF_annual_mean.csv", sep=""))
-
-# precipitation
-precMeanSums(inFile=paste(getwd(), "/prec_DF.csv", sep=""),
-             outFile=paste(destDir, "prec_DF_annual_sum.csv", sep=""))
-
-####################################################################################
-## Project BIOME onto PCM file
+### Step 5. Project BIOME onto PCM file
 biomeProject(corFile=paste(getwd(), "/CRU_Biome.csv",sep=""),
              tempFile=paste(getwd(), "/temp_PCM.csv",sep=""),
              precFile=paste(getwd(), "/prec_PCM.csv",sep=""), 
