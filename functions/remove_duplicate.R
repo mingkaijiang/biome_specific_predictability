@@ -1,7 +1,10 @@
 ####################################################################################
 ## Remove duplicated entries in the raw data
 remove_duplicate <- function(inFile, outFile) {
-    input <- read.table(inFile, sep=",",header=T)
+    # library
+    require(data.table)
+    
+    input <- fread(inFile, sep=",",header=T)
     
     for (i in 1:max(input$CRU_Site))
     {

@@ -6,11 +6,11 @@
 #### Install libraries
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(ncdf4,
+               data.table,
                #chron,
                #RColorBrewer,
                #lattice,
                #plyr,
-               #data.table,
                #reshape2,
                #maps,
                #changepoint,

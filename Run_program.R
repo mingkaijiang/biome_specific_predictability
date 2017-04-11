@@ -22,35 +22,34 @@ source("R/prepare_R.R")
 #### Download the data into "/data/raw_data", then run the following codes to process them
 
 ####################################################################################
-#### Preliminary processing CRU climate data
+#### Preliminary processing CRU climate data  - skipping step 1 - 2
 
-### Step 1. convert from nc to csv file format
-# CRU temperature
-nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
-          outFile=paste0(dataDir,"/temp_DF.csv"))
+#### Step 1. convert from nc to csv file format
+## CRU temperature
+#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
+#          outFile=paste0(dataDir,"/temp_DF.csv"))
+#
+## CRU precipitation
+#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
+#          outFile=paste0(dataDir,"/prec_DF.csv"))
+#
+#
+#### Step 2. remove duplicated data entries  -- Note: may not needed.
+## temperature
+#remove_duplicate(inFile=paste0(dataDir,"/temp_DF.csv"),
+#                 outFile=paste0(dataDir,"/temp_DF_processed.csv"))
+#
+## precipitation
+#remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
+#                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
+#
 
-# CRU precipitation
-nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
-          outFile=paste0(dataDir,"/prec_DF.csv"))
-
-
-### Step 2. remove duplicated data entries
+### Step 3. calculate predictability using CRU climate data
 # temperature
-remove_duplicate(inFile=paste0(dataDir,"/temp_DF.csv"),
-                 outFile=paste0(dataDir,"/temp_DF_processed.csv"))
+PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
 # precipitation
-remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
-                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
-
-####################################################################################
-## Calculate predictability using CRU climate data
-
-# temperature
-PCM_temp(sourceDir = getwd(), destDir = getwd())
-
-# precipitation
-PCM_prec(sourceDir = getwd(), destDir = getwd())
+PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 ## Calculate climate annual mean and annual sums

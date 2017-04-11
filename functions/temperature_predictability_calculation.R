@@ -4,12 +4,14 @@
 ##Classification scheme: -3 stdev + mean to +3 stdev + mean
 PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
-    dir.create(destDir, showWarnings = FALSE)
-    ##  inName <- paste(sourceDir, "temp_DF_processed.csv",sep="/")  ##removed duplicated temp data
+
+    require(data.table)
+    
     inName <- paste(sourceDir, "temp_DF.csv",sep="/")
     outName <- paste(destDir, "temp_PCM.csv", sep="/")
     
-    input <- read.table(inName, sep=",", header=T)
+    input <- fread(inName, sep=",", header=T)
+    input <- as.data.frame(input)
     
     temp <- subset(input, year == 1901)
     

@@ -5,12 +5,13 @@
 
 PCM_prec<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
-    dir.create(destDir, showWarnings = FALSE)
-    ##  inName <- paste(sourceDir, "pre_DF_processed.csv",sep="/")
+    require(data.table)
+    
     inName <- paste(sourceDir, "pre_DF.csv",sep="/")
     outName <- paste(destDir, "pre_PCM.csv", sep="/")
     
-    input <- read.table(inName, sep=",", header=T)
+    input <- fread(inName, sep=",", header=T)
+    input <- as.data.frame(input)
     
     temp <- subset(input, year == 1901)
     
