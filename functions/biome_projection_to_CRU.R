@@ -2,8 +2,11 @@
 ## Project Biome onto CRU PCM data
 biomeProject <- function(corFile, tempFile, precFile, pcmFile) {
     
+    # read cor file
+    corDF <- read.table(corFile, header=T,sep=",")
+    
     # temperature PCM with BIOME
-    tempPCM <- read.table(tempDF, header=T,sep=",")
+    tempPCM <- read.table(tempFile, header=T,sep=",")
     tempDF <- cbind(tempPCM, corDF$BIOME)
     
     colnames(tempDF) <- c("CRU_Site","lon","lat","year","year_count","seasons",
@@ -13,7 +16,7 @@ biomeProject <- function(corFile, tempFile, precFile, pcmFile) {
                           "BIOME")
     
     # precipitation PCM with BIOME
-    precPCM <- read.table(precDF, header=T,sep=",")
+    precPCM <- read.table(precFile, header=T,sep=",")
     precDF <- cbind(precPCM, corDF$BIOME)
     
     colnames(precDF) <- c("CRU_Site","lon","lat","year","year_count","seasons",

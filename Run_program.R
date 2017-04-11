@@ -61,9 +61,9 @@ source("R/prepare_R.R")
 #             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
 ### Step 5. Project BIOME onto PCM file
-biomeProject(corFile=paste0(dataDir, "/CRU_Biome.csv"),
+biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),
              tempFile=paste0(dataDir, "/temp_PCM.csv"),
-             precFile=paste0(dataDir, "/prec_PCM.csv"), 
+             precFile=paste0(dataDir, "/pre_PCM.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
 
 ####################################################################################

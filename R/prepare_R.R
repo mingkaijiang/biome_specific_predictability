@@ -59,6 +59,7 @@ dataDir <- paste0(cwd, "/data")
 plotDir <- paste0(cwd, "/Plots")
 tableDir <- paste0(cwd, "/Tables")
 analysesDir <- paste0(cwd, "/analyses")
+corDir <- paste0(cwd, "/data/cru_biome_data")
 
 #### Create the necessary sub-folders
 dir.create(ncDir, showWarnings = FALSE)
