@@ -61,10 +61,10 @@ source("R/prepare_R.R")
 #             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
 ### Step 5. Project BIOME onto PCM file
-biomeProject(corFile=paste(getwd(), "/CRU_Biome.csv",sep=""),
-             tempFile=paste(getwd(), "/temp_PCM.csv",sep=""),
-             precFile=paste(getwd(), "/prec_PCM.csv",sep=""), 
-             pcmFile=paste(getwd(), "/biome_temp_prec_PCM.csv",sep=""))
+biomeProject(corFile=paste0(dataDir, "/CRU_Biome.csv"),
+             tempFile=paste0(dataDir, "/temp_PCM.csv"),
+             precFile=paste0(dataDir, "/prec_PCM.csv"), 
+             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
 
 ####################################################################################
 ## Save PCM with prec means and sums and temp means
