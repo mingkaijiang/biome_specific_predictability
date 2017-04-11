@@ -32,33 +32,34 @@ for(z in sourcefiles)source(z)
 
 #### Create analyses folders if not exist
 if(!dir.exists("/analyses")) {
-    dir.create(paste0(getwd(), "/analyses"))
+    dir.create(paste0(getwd(), "/analyses"), showWarnings = FALSE)
 }
 
 #### Create plot folders if not exist
 if(!dir.exists("/Plots")) {
-    dir.create(paste0(getwd(), "/Plots"))
+    dir.create(paste0(getwd(), "/Plots"), showWarnings = FALSE)
 }
 
 #### Create Tables folders if not exist
 if(!dir.exists("/Tables")) {
-    dir.create(paste0(getwd(), "/Tables"))
+    dir.create(paste0(getwd(), "/Tables"), showWarnings = FALSE)
 }
 
 #### Create data folders if not exist
 if(!dir.exists("/data")) {
-    dir.create(paste0(getwd(), "/data"))
+    dir.create(paste0(getwd(), "/data"), showWarnings = FALSE)
 }
 
 #### store working directory information
 cwd <- getwd()
 
 #### store data path
-inDir <- paste0(cwd, "/data/raw_data")
+ncDir <- paste0(cwd, "/data/raw_data")
+dataDir <- paste0(cwd, "/data")
 plotDir <- paste0(cwd, "/Plots")
 tableDir <- paste0(cwd, "/Tables")
 analysesDir <- paste0(cwd, "/analyses")
 
 #### Create the necessary sub-folders
-dir.create(inDir, showWarnings = FALSE)
+dir.create(ncDir, showWarnings = FALSE)
 

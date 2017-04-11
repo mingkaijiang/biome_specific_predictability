@@ -38,3 +38,13 @@ vignettes/*.pdf
 
 # Git.Rroj
 * .Rproj
+
+# all the input data
+data/raw_data/*.nc
+data/*.csv
+
+# all the analyses, plots and tables
+analyses/*.csv
+Plots/*.pdf
+Plots/*.png
+Tables/*.csv

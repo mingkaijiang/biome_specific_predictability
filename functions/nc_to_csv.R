@@ -1,5 +1,5 @@
 #### Convert nc file into csv file for CRU temperature and precipitation data
-ncTOcsv <- function(inFile, outFile) {
+nc_to_csv <- function(inFile, outFile) {
     
     # library 
     library(ncdf4)
@@ -7,21 +7,21 @@ ncTOcsv <- function(inFile, outFile) {
     # process file
     ncDF <- nc_open(inFile) 
     
-    print(ncDF)
+    #print(ncDF)
     
     t <- ncvar_get(ncDF,varid = "time" )
     nt <- dim(t)
     
     tmp.array <- ncvar_get(ncDF)
-    dim(tmp.array)
+    #dim(tmp.array)
     
     lon <- ncvar_get(ncDF, "lon")
     nlon <- dim(lon)
-    head(lon)
+    #head(lon)
     
     lat <- ncvar_get(ncDF, "lat")
     nlat <- dim(lat)
-    head(lat)
+    #head(lat)
     
     jan.list <- 13
     feb.list <- 14

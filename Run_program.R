@@ -17,28 +17,31 @@ rm(list=ls(all=TRUE))
 #### prepare wk spaces and libraries
 source("R/prepare_R.R")
 
+####################################################################################
+#### assume you have downloaded the data as registration is required to download the data
+#### Download the data into "/data/raw_data", then run the following codes to process them
 
 ####################################################################################
-## process nc file to csv file
+#### Preliminary processing CRU climate data
 
+### Step 1. convert from nc to csv file format
 # CRU temperature
-ncTOcsv(inFile=paste(inDir, "/cru_ts3.21.1901.2012.tmp.dat.nc", sep=""),
-        outFile=paste(destDir,"/temp_DF.csv",sep=""))
+nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
+          outFile=paste0(dataDir,"/temp_DF.csv"))
 
 # CRU precipitation
-ncTOcsv(inFile=paste(inDir, "/cru_ts3.21.1901.2012.pre.dat.nc", sep=""),
-        outFile=paste(destDir,"/prec_DF.csv",sep=""))
+nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
+          outFile=paste0(dataDir,"/prec_DF.csv"))
 
-####################################################################################
-## Remove duplicated data entries
 
+### Step 2. remove duplicated data entries
 # temperature
-reduplicate(inFile=paste(getwd(), "temp_DF.csv", sep="/"),
-            outFile=paste(getwd(), "temp_DF_processed.csv", sep="/"))
+remove_duplicate(inFile=paste0(dataDir,"/temp_DF.csv"),
+                 outFile=paste0(dataDir,"/temp_DF_processed.csv"))
 
 # precipitation
-reduplicate(inFile=paste(getwd(), "prec_DF.csv", sep="/"),
-            outFile=paste(getwd(), "prec_DF_processed.csv", sep="/"))
+remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
+                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
 
 ####################################################################################
 ## Calculate predictability using CRU climate data
