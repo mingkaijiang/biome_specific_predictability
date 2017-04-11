@@ -22,7 +22,7 @@ source("R/prepare_R.R")
 #### Download the data into "/data/raw_data", then run the following codes to process them
 
 ####################################################################################
-#### Preliminary processing CRU climate data  - skipping step 1 - 2
+#### Preliminary processing CRU climate data  - skipping step 1 - 3 as they take very long to run!
 
 #### Step 1. convert from nc to csv file format
 ## CRU temperature
@@ -43,13 +43,13 @@ source("R/prepare_R.R")
 #remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
 #                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
 #
-
-### Step 3. calculate predictability using CRU climate data
-# temperature
-PCM_temp(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation
-PCM_prec(sourceDir = dataDir, destDir = dataDir)
+#
+#### Step 3. calculate predictability using CRU climate data
+## temperature
+#PCM_temp(sourceDir = dataDir, destDir = dataDir)
+#
+## precipitation
+#PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 ## Calculate climate annual mean and annual sums
