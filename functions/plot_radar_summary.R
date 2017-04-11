@@ -4,7 +4,7 @@
 radar_summary <- function(inDF) {
     
     # library
-    require(fmsb)
+    #require(fmsb)
     
     # prepare dataframe
     col.list <- color.list

@@ -90,39 +90,35 @@ summary <- summaryPrep(plotDF)
 #maxDF <- summaryPrep_max(plotDF)
 
 ### Step 3. Basic summary figures
-## plot 2d with two directional error bars
-pdf(paste0(plotDir, "/Summary_2_d.pdf"),
-    width = 10, height = 8)
-summary2d(summary)
-dev.off()
-
-## Plot radar plots for summary data
-pdf(paste0(plotDir, "/radar_plot.pdf"))
-radar_summary(summary)
-dev.off()
-
-pdf(paste0(plotDir, "/image/summary_2_d.pdf"),
+# plot 2d with two directional error bars
+pdf(paste0(analysesDir, "/summary_2_d.pdf"),
     width = 10, height = 8)
 summary2dimage(summary)
 dev.off()
 
-## Plot radar plots for summary data
-pdf(paste0(plotDir, "/image/radar_plot.pdf"),
+# Plot radar plots for summary data, 1 biome per plot
+pdf(paste0(analysesDir, "/radar_plot_individual.pdf"))
+radar_summary(summary)
+dev.off()
+
+
+# Plot radar plots for summary data, all biomes 1 plot
+pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
     width = 8, height = 12)
 radar_summary_image2(summary)
 dev.off()
 
 ## Plot star plots for summary data
-pdf(paste0(plotDir, "/image/star_plot.pdf"))
+pdf(paste0(analysesDir, "/star_plot.pdf"))
 star_summary_image(summary)
 dev.off()
 
 ## PCA analysis for each biome using summary statistics
-pdf(paste0(plotDir, "/PCA_summary.pdf"))
+pdf(paste0(analysesDir, "/PCA_summary.pdf"))
 SummaryPCA(summary)
 dev.off()
 
-pdf(paste0(plotDir, "/image/PCA_summary.pdf"))
+pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure.pdf"))
 SummaryPCA_image(summary)
 dev.off()
 

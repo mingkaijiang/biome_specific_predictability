@@ -3,7 +3,7 @@
 summary2d <- function(summary) {
     
     # setting graphics
-    require(psych)
+    #require(psych)
     m <- matrix(c(1,2,3,3), nrow=2, ncol=2,byrow=T)
     layout(mat=m, heights=c(0.8,0.2))
     
@@ -38,4 +38,5 @@ summary2d <- function(summary) {
     legend(x="bottom",inset=0, legend = biome, fill=color.list, 
            cex=0.8,ncol=4)
     par(opar)
+    
 }

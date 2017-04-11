@@ -3,7 +3,7 @@
 radar_summary_image2 <- function(inDF) {
     
     # library
-    require(fmsb)
+    #require(fmsb)
     
     # prepare dataframe
     col.list <- color.list

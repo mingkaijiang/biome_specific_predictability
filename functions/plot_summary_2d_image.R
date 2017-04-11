@@ -3,7 +3,8 @@
 summary2dimage <- function(summary) {
     
     # setting graphics
-    require(psych)
+    #require(psych)
+    
     m <- matrix(c(1,2,3,3), nrow=2, ncol=2,byrow=T)
     layout(mat=m, heights=c(0.8,0.2))
     

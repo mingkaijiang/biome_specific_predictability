@@ -8,6 +8,10 @@
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(ncdf4,
                data.table,
+               psych,
+               fmsb,
+               ks,
+               vegan,
                #chron,
                #RColorBrewer,
                #lattice,

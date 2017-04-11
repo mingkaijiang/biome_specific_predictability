@@ -45,6 +45,7 @@ data/*.csv
 
 # all the analyses, plots and tables
 analyses/*.csv
+analyses/*.pdf
 Plots/*.pdf
 Plots/*.png
 Tables/*.csv

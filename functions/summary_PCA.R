@@ -5,8 +5,8 @@
 SummaryPCA <- function(inDF) {
     
     # library
-    require(ks)
-    require(vegan)
+    #require(ks)
+    #require(vegan)
     
     # process infile
     subDF <- data.frame(inDF$biome, inDF$temp_mean, inDF$tempP_mean, 

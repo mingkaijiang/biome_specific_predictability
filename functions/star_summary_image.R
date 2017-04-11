@@ -4,7 +4,7 @@
 star_summary_image <- function(inDF) {
     
     # library
-    require(fmsb)
+    #require(fmsb)
     
     # prepare dataframe
     col.list <- color.list
