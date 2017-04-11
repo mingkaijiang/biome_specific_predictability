@@ -1,7 +1,7 @@
 
 ####################################################################################
 # Plot biome map
-biomePlot <- function(inDF) {
+biome_plot <- function(inDF) {
     
     # setting graphics
     m <- matrix(c(1,2), nrow=2, ncol=1,byrow=T)

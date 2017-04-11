@@ -1,6 +1,6 @@
 ####################################################################################
 ## Plotting function 1
-PlotPCMMaps <- function(inDF) {
+plot_PCM_maps <- function(inDF) {
     ## Plot the following maps:
     ## 1. global temperature predictability map
     ## 2. global temperature constancy map

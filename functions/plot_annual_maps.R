@@ -1,6 +1,6 @@
 ####################################################################################
-## Plotting function 1
-PlotMapsAnnual <- function(inDF) {
+## Plotting all annual climate
+plot_maps_annual <- function(inDF) {
     ## Plot the following maps:
     ## 1. global MAT
     ## 2. global ATP

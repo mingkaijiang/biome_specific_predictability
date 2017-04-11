@@ -108,12 +108,12 @@ pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
 radar_summary_image2(summary)
 dev.off()
 
-## Plot star plots for summary data
+# Plot star plots for summary data
 pdf(paste0(analysesDir, "/star_plot.pdf"))
 star_summary_image(summary)
 dev.off()
 
-## PCA analysis for each biome using summary statistics
+# PCA analysis for each biome using summary statistics
 pdf(paste0(analysesDir, "/PCA_summary.pdf"))
 SummaryPCA(summary)
 dev.off()
@@ -124,33 +124,32 @@ dev.off()
 
 
 ####################################################################################
-# Plot biome distribution
-pdf(paste(getwd(), "/image/biomePLOT.pdf", sep=""),
+#### Plot all the globally gridded maps, steps 3-4 just split step 2
+### Step 1. Plot global biome distribution
+pdf(paste0(analysesDir, "/global_biome_plot.pdf"),
     width=10, height=8)
-biomePlot(plotDF)
+biome_plot(plotDF)
 dev.off()
 
-####################################################################################
-### Gridded maps
-
-# create pdf file of global maps
-pdf(paste(getwd(), "/global_maps_of_climate.pdf", sep=""),
+# Step 2. Create pdf file of all climate-related global maps
+pdf(paste0(analysesDir, "/global_maps_of_all_climate.pdf"),
     width = 10, height = 8)
 PlotMaps(plotDF)
 dev.off()
 
 
-# create pdf file of global maps
-pdf(paste(getwd(), "/image/global_maps_of_PCM.pdf", sep=""),
+# Step 3. Create pdf file of global maps
+pdf(paste0(analysesDir, "/global_maps_of_PCM.pdf"),
     width = 10, height = 9)
-PlotPCMMaps(plotDF)
+plot_PCM_maps(plotDF)
 dev.off()
 
-# create pdf file of global maps
-pdf(paste(getwd(), "/image/global_maps_of_annual_climate.pdf", sep=""),
+# Step 4. create pdf file of global maps
+pdf(paste0(analysesDir, "/global_maps_of_annual_climate.pdf"),
     width = 8, height = 6)
-PlotMapsAnnual(plotDF)
+plot_maps_annual(plotDF)
 dev.off()
+
 
 ####################################################################################
 ## kernel density plot
@@ -158,9 +157,8 @@ pdf(paste(getwd(), "/kernel_density.pdf", sep=""))
 kernel_multi(plotDF)
 dev.off()
 
-####################################################################################
 ## biome specific Ie factor plot
-pdf(paste(getwd(), "/biome_Ie.pdf", sep=""))
+pdf(paste0(analysesDir, "/biome_Ie.pdf"))
 Ieplot(plotDF)
 dev.off()
 

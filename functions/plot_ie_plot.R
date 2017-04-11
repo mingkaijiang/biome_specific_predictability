@@ -4,8 +4,8 @@
 Ieplot <- function(inDF) {
     
     # library
-    require(lattice)
-    require(gridExtra)
+    #require(lattice)
+    #require(gridExtra)
     
     # read in file
     myDF <- inDF

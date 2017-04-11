@@ -3,7 +3,7 @@
 ClimSpace <- function(inDF) {
     
     # library
-    require(hexbin)
+    #require(hexbin)
     
     # read in file
     newDF <- inDF
