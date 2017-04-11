@@ -1,6 +1,6 @@
 ####################################################################################
 ## Save PCM with prec mean sums, and temp means
-matchClimate <- function(tempFile, precFile, pcmFile, fullFile) {
+match_climate <- function(tempFile, precFile, pcmFile, fullFile) {
     ## temperature
     tempdf <- read.table(tempFile,
                          header=T,sep=",")

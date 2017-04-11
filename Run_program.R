@@ -42,36 +42,35 @@ source("R/prepare_R.R")
 ## precipitation
 #remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
 #                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
-#
-#
-#### Step 3. calculate predictability using CRU climate data
-## temperature
-#PCM_temp(sourceDir = dataDir, destDir = dataDir)
-#
-## precipitation
-#PCM_prec(sourceDir = dataDir, destDir = dataDir)
-#
-#### Step 4. Calculate climate annual mean and annual sums
-## temperature
-#tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
-#          outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
-#
-## precipitation
-#precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
-#             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
+
+
+### Step 3. calculate predictability using CRU climate data
+# temperature
+PCM_temp(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation
+PCM_prec(sourceDir = dataDir, destDir = dataDir)
+
+### Step 4. Calculate climate annual mean and annual sums
+# temperature
+tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
+          outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
+
+# precipitation
+precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
+             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
 ### Step 5. Project BIOME onto PCM file
-biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),
+biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
              tempFile=paste0(dataDir, "/temp_PCM.csv"),
              precFile=paste0(dataDir, "/pre_PCM.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
 
-####################################################################################
-## Save PCM with prec means and sums and temp means
-matchClimate(tempFile=paste(getwd(), "/temp_DF_annual_mean.csv", sep=""),
-             precFile=paste(getwd(), "/prec_DF_annual_sum.csv", sep=""), 
-             pcmFile=paste(getwd(), "biome_temp_prec_PCM.csv", sep="/"),
-             fullFile=paste(destDir, "/biome_temp_prec_full.csv", sep=""))
+### Step 6. Save PCM with prec means and sums and temp means
+match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
+             precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"),
+             fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
 ####################################################################################
 ################# Main program for plotting ########################################
