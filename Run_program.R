@@ -44,14 +44,16 @@ source("R/prepare_R.R")
 #                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
 
 
-### Step 3. calculate predictability using CRU climate data
+####################################################################################
+#### Compute Colwell index for temperature and precipitation data
 # temperature
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
 # precipitation
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
-### Step 4. Calculate climate annual mean and annual sums
+####################################################################################
+#### Calculate climate annual mean and annual sums
 # temperature
 tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
           outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
@@ -60,67 +62,34 @@ tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
 precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
              outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
-### Step 5. Project BIOME onto PCM file
+####################################################################################
+#### Combine all dataframes
+### Step 1. Project BIOME information onto PCM file
 biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
              tempFile=paste0(dataDir, "/temp_PCM.csv"),
              precFile=paste0(dataDir, "/pre_PCM.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
 
-### Step 6. Save PCM with prec means and sums and temp means
+### Step 2. Save PCM with prec means and sums and temp means
 match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
              precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"),
              fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
-####################################################################################
-#### Plotting
+### Step 3. Preliminary processing of the df for plotting and table purposes
 # generate temp and prec classes and ie factor
 plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
-####### Next to combine all the summary statistical functions and plottings together 
-
-
+####################################################################################
+#### Compute summary statistics and figures
 # Calculate summary df
 summary <- summaryPrep(plotDF)
-
-write.table(summary, paste(getwd(), "/summary_statistics.csv", sep=""),
-            col.names=T,row.names=F, sep=",")
 
 # Calculate summary df
 minDF <- summaryPrep_min(plotDF)
 maxDF <- summaryPrep_max(plotDF)
 
-################# Graphic settings ################################################
-# save default par()
-opar <- par()
-
-# suppression warning messages globally
-options(warn=-1)
-
-# prepare legend labels
-temp.lab <- c("<-4.7", "-2.1", "0.5", "3.0", "5.6", "8.2",
-              "10.8", "13.4", "16.0", "18.5", "21.1", ">21.1")
-prec.lab <- c("0", "2.3", "5.3", "12.2", "28", "64",
-              "148", "340", "783", "1801", "4142",
-              ">4142")
-
-# prepare color list
-color.list <- c("#882E72", "#B178A6", "#D6C1DE", 
-                "#1965B0", "#5289C7", "#7BAFDE", 
-                "#4EB265", "#90C987", "#CAE0AB", 
-                "#F7EE55", "#F6C141", "#F1932D", 
-                "#E8601C", "#DC050C")
-
-####################################################################################
-# Plot biome distribution
-pdf(paste(getwd(), "/image/biomePLOT.pdf", sep=""),
-    width=10, height=8)
-biomePlot(plotDF)
-dev.off()
-
-####################################################################################
 ### Summary statistics
-
 ## plot 2d with two directional error bars
 pdf(paste(getwd(), "/Summary_2_d.pdf", sep=""),
     width = 10, height = 8)
@@ -148,6 +117,22 @@ pdf(paste(getwd(), "/image/star_plot.pdf", sep=""))
 star_summary_image(summary)
 dev.off()
 
+## PCA analysis for each biome using summary statistics
+pdf(paste(getwd(), "/PCA_summary.pdf", sep=""))
+SummaryPCA(summary)
+dev.off()
+
+pdf(paste(getwd(), "/image/PCA_summary.pdf", sep=""))
+SummaryPCA_image(summary)
+dev.off()
+
+
+####################################################################################
+# Plot biome distribution
+pdf(paste(getwd(), "/image/biomePLOT.pdf", sep=""),
+    width=10, height=8)
+biomePlot(plotDF)
+dev.off()
 
 ####################################################################################
 ### Gridded maps
@@ -204,15 +189,6 @@ pdf(paste(getwd(), "Biome_density_normal.pdf", sep="/"),
 biomeDensityPlot(plotDF)
 dev.off()
 
-####################################################################################
-## PCA analysis for each biome using summary statistics
-pdf(paste(getwd(), "/PCA_summary.pdf", sep=""))
-SummaryPCA(summary)
-dev.off()
-
-pdf(paste(getwd(), "/image/PCA_summary.pdf", sep=""))
-SummaryPCA_image(summary)
-dev.off()
 
 ####################################################################################
 ## PCA analysis for each biome using all data
@@ -515,8 +491,15 @@ FileDir <- paste(getwd(), "/image/", sep="")
 pdfTOpng(FileDir)
 
 ####################################################################################
-# turn warning message back on
+#### End of analysis, restoring settings
+
+### Step 1. turn warning message back on
 options(warn=0)
 
-#### Clear workspace
+### Step 2. restore par information
+par(opar)
+
+#### Step 3. Clear workspace
 rm(list=ls(all=TRUE))
+
+####################################################################################

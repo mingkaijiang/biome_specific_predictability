@@ -3,6 +3,7 @@
 #### 
 ################################################################################
 
+######################## Libraries ##################################
 #### Install libraries
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(ncdf4,
@@ -24,12 +25,13 @@ pacman::p_load(ncdf4,
                #ggplot2,
                raster) # add other packages needed to this list
 
-
+##################### Function sourcing ###########################
 #### Sourcing all R files in the function subdirectory
 sourcefiles <- dir("Functions", pattern="[.]R$", recursive = TRUE, full.names = TRUE)
 for(z in sourcefiles)source(z)
 
 
+##################### Create Folders #############################
 #### Create analyses folders if not exist
 if(!dir.exists("/analyses")) {
     dir.create(paste0(getwd(), "/analyses"), showWarnings = FALSE)
@@ -50,6 +52,7 @@ if(!dir.exists("/data")) {
     dir.create(paste0(getwd(), "/data"), showWarnings = FALSE)
 }
 
+################# Directory settings ###########################
 #### store working directory information
 cwd <- getwd()
 
@@ -63,4 +66,26 @@ corDir <- paste0(cwd, "/data/cru_biome_data")
 
 #### Create the necessary sub-folders
 dir.create(ncDir, showWarnings = FALSE)
+
+################# Graphic settings ###########################
+# save default par()
+opar <- par()
+
+# suppression warning messages globally
+options(warn=-1)
+
+# prepare legend labels
+temp.lab <- c("<-4.7", "-2.1", "0.5", "3.0", "5.6", "8.2",
+              "10.8", "13.4", "16.0", "18.5", "21.1", ">21.1")
+prec.lab <- c("0", "2.3", "5.3", "12.2", "28", "64",
+              "148", "340", "783", "1801", "4142",
+              ">4142")
+
+# prepare color list
+color.list <- c("#882E72", "#B178A6", "#D6C1DE", 
+                "#1965B0", "#5289C7", "#7BAFDE", 
+                "#4EB265", "#90C987", "#CAE0AB", 
+                "#F7EE55", "#F6C141", "#F1932D", 
+                "#E8601C", "#DC050C")
+
 

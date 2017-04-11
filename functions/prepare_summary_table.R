@@ -34,5 +34,9 @@ summaryPrep <- function(inDF) {
         summary[summary$biome == i, "prec_sd"] <- round(sd(myDF[myDF$BIOME == i, "prec_sum"]),2)
     }
     
+    ## save onto disk
+    write.table(summary, paste0(dataDir, "/summary_statistics.csv"),
+                col.names=T,row.names=F, sep=",")
+    
     return(summary)
 }
