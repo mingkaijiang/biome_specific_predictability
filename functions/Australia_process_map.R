@@ -69,6 +69,6 @@ Australia_process_map <- function(inDF) {
         world(add=T, col=adjustcolor("grey", 0.5))
     }
     
-    return(subDF.prec)
+    #return(subDF.prec)
     
 }

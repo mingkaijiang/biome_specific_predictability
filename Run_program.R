@@ -249,57 +249,61 @@ pdf(paste0(analysesDir, "/Oz_timeseries.pdf"),
 TwoSites_timeseries(ozDF)
 dev.off()
 
-####################################################################################
-# Extract Tasmania and check with the global climate
-pdf(paste(getwd(), "/Tasmania_maps.pdf", sep=""),
+### Case 2. Tasmania
+# Step 1. Extract Tasmania and check with the global climate
+pdf(paste0(analysesDir, "/Tasmania_maps.pdf"),
     width = 10, height = 8)
-tasDF <- Tasmania_process(plotDF)
+Tasmania_process(plotDF)
 dev.off()
 
-pdf(paste(getwd(), "/Tasmania_compare.pdf", sep=""),
+# Step 2. compare Tasmania to other regions
+pdf(paste0(analysesDir, "/Tasmania_compare.pdf"),
     width = 10, height = 8)
 Tasmania_compare(plotDF)
 dev.off()
 
-####################################################################################
-# Extract Australia and check with the global climate
-pdf(paste(getwd(), "/Australia_maps.pdf", sep=""),
+### Case 3. Australia
+# Step 1. Extract Australia and check with the global climate
+pdf(paste0(analysesDir, "/Australia_maps.pdf"),
     width = 14, height = 12)
-AusDF <- Australia_process(plotDF)
+Australia_process(plotDF)
 dev.off()
 
-
-pdf(paste(getwd(), "/Australia_compare.pdf", sep=""),
+# Step 2. 
+pdf(paste0(analysesDir, "/Australia_compare.pdf"),
     width = 10, height = 8)
 Australia_compare(plotDF)
 dev.off()
 
-
+# Step 3. 
 # Extract Australia and check with the global climate
-pdf(paste(getwd(), "/image/Australia_maps.pdf", sep=""),
+pdf(paste0(analysesDir, "/Australia_maps_image.pdf"),
     width = 14, height = 10)
-AusDF <- Australia_process_map(plotDF)
+Australia_process_map(plotDF)
 dev.off()
 
-pdf(paste(getwd(), "/image/Australia_4.pdf", sep=""))
+# Step 4. Biome #4
+pdf(paste0(analysesDir, "/Australia_4.pdf"))
 Australia_compare_4(plotDF)
 dev.off()
 
-pdf(paste(getwd(), "/image/Australia_7.pdf", sep=""))
+# Step 5. Biome #7
+pdf(paste0(analysesDir, "/Australia_7.pdf"))
 Australia_compare_7(plotDF)
 dev.off()
 
-pdf(paste(getwd(), "/image/Australia_8.pdf", sep=""))
+# Step 6. Biome #8
+pdf(paste0(analysesDir, "/Australia_8.pdf"))
 Australia_compare_8(plotDF)
 dev.off()
 
-
-pdf(paste(getwd(), "/image/Australia_12.pdf", sep=""))
+# Step 7. Biome #12
+pdf(paste0(analysesDir, "/Australia_12.pdf"))
 Australia_compare_12(plotDF)
 dev.off()
 
-
-pdf(paste(getwd(), "/image/Australia_13.pdf", sep=""))
+# Step 8. Biome #13
+pdf(paste0(analysesDir, "/Australia_13.pdf"))
 Australia_compare_13(plotDF)
 dev.off()
 

@@ -79,6 +79,6 @@ Tasmania_process <- function(inDF) {
     legend("bottomleft", c("Ie > 1", "Ie < 1"), fill = c("blue", "red"))
     world(add=T, col=adjustcolor("grey", 0.5))
     
-    return(subDF.precP)
+    #return(subDF.precP)
     
 }
