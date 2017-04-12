@@ -4,8 +4,7 @@
 ##Classification scheme: -3 stdev + mean to +3 stdev + mean
 PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
-
-    require(data.table)
+    #require(data.table)
     
     inName <- paste(sourceDir, "temp_DF.csv",sep="/")
     outName <- paste(destDir, "temp_PCM.csv", sep="/")
@@ -183,3 +182,4 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     write.table(output,outName,sep=",",row.names=F)
 }
+

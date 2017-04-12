@@ -18,11 +18,13 @@ rm(list=ls(all=TRUE))
 source("R/prepare_R.R")
 
 ####################################################################################
-#### assume you have downloaded the data as registration is required to download the data
-#### Download the data into "/data/raw_data", then run the following codes to process them
+#### Downloading global gridded CRU TS3.21 temperature and precipitation data
+#### Assume you have downloaded the data as registration is required to download the data
+#### Put the raw .nc data into folder "/data/raw_data"
+#### Then run the following codes to process them
 
 ####################################################################################
-#### Preliminary processing CRU climate data  - skipping step 1 - 3 as they take very long to run!
+#### Preliminary processing CRU climate data 
 
 #### Step 1. convert from nc to csv file format
 ## CRU temperature
@@ -43,13 +45,14 @@ source("R/prepare_R.R")
 #remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
 #                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
 
+#### Step 3. climate data detrending  -- Note: not needed for now
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
-# temperature
+# temperature - Run time: 
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation
+# precipitation - Run time: 
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
@@ -323,12 +326,7 @@ BiomeDifferStats(plotDF)
 dev.off()
 
 ####################################################################################
-#### Conver image pdf into jpeg files
-pdfTOpng(paste0(analysesDir,"/"))
-
-####################################################################################
 #### End of analysis, restoring settings
-
 ### Step 1. turn warning message back on
 options(warn=0)
 
