@@ -3,7 +3,7 @@
 pdfTOpng <- function(FileDir) {
     
     # library
-    require(animation)
+    #require(animation)
     Flist <- list.files(path = FileDir, pattern = ".pdf")
     
     Olist <- gsub("pdf", "jpeg", Flist)

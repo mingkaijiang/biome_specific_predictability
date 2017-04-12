@@ -323,14 +323,8 @@ BiomeDifferStats(plotDF)
 dev.off()
 
 ####################################################################################
-#### Animated plots
-
-
-####################################################################################
-# Conver image pdf into jpeg files
-FileDir <- paste(getwd(), "/image/", sep="")
-
-pdfTOpng(FileDir)
+#### Conver image pdf into jpeg files
+pdfTOpng(paste0(analysesDir,"/"))
 
 ####################################################################################
 #### End of analysis, restoring settings

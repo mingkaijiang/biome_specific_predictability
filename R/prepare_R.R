@@ -14,25 +14,17 @@ pacman::p_load(ncdf4,
                vegan,
                agricolae,
                gplots,
-               #chron,
-               #RColorBrewer,
+               animation,
                lattice,
                gridExtra,
                hexbin,
                matrixStats,
                zoo,
-               #plyr,
                reshape2,
-               #maps,
-               #changepoint,
-               #SDMTools,
                sm,
                fields,
-               #spatstat,
                vioplot,
                aplpack,
-               #plyr,
-               #ggplot2,
                raster) # add other packages needed to this list
 
 ##################### Function sourcing ###########################
@@ -73,11 +65,9 @@ plotDir <- paste0(cwd, "/Plots")
 tableDir <- paste0(cwd, "/Tables")
 analysesDir <- paste0(cwd, "/analyses")
 corDir <- paste0(cwd, "/data/cru_biome_data")
-animatedDir <- paste0(cwd, "/analyses/animated")
 
 #### Create the necessary sub-folders
 dir.create(ncDir, showWarnings = FALSE)
-dir.create(animatedDir, showWarnings = FALSE)
 
 ################# Graphic settings ###########################
 # save default par()

@@ -7,8 +7,8 @@ AnimatedDensityPlot <- function(inDF) {
     ## 2. temperature predictability vs. precipitation predictability
     
     # library
-    require(vegan)
-    require(ks)
+    #require(vegan)
+    #require(ks)
     
     # prepare dataframe
     plotDF2 <- subset(inDF, BIOME > 0)
