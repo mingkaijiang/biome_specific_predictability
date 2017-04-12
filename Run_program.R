@@ -308,66 +308,22 @@ Australia_compare_13(plotDF)
 dev.off()
 
 ####################################################################################
-# Checking if P controls biome differences when temp and prec failed
-pdf(paste(getwd(), "/BiomeDiffer.pdf", sep=""))
+#### Checking if P controls biome differences when temp and prec failed
+# Step 1. Individual biome comparison - not recommended to run
+pdf(paste0(analysesDir, "/BiomeDiffer.pdf"))
 BiomeDifferPlot(plotDF)
 dev.off()
 
-####################################################################################
-# Compare 2 biomes at one time where they overlap in MAT and MAP
-# if prec P and temp P differ among bomes
-# and the subsequent C and M relationships
-# Plot a matrix and fill color
-pdf(paste(getwd(), "/BiomeDiffer_Stats.pdf", sep=""))
+# Step 2. Compare 2 biomes at one time where they overlap in MAT and MAP
+#         if prec P and temp P differ among bomes
+#         and the subsequent C and M relationships
+#         Plot a matrix and fill color
+pdf(paste0(analysesDir, "/BiomeDiffer_Stats.pdf"))
 BiomeDifferStats(plotDF)
 dev.off()
 
 ####################################################################################
-# Plot 3d checking MAT/MAP vs C vs M
-pdf(paste(getwd(), "/plot_3d_MAT.pdf", sep=""))
-plot3d_MAT(plotDF)
-dev.off()
-
-pdf(paste(getwd(), "/plot_3d_MAP.pdf", sep=""))
-plot3d_MAP(plotDF)
-dev.off()
-
-####################################################################################
-# Calculate coefficient of variation for all data,
-# interannual variation, intraannual variation
-# Temperature
-tempVar <- CoefVar(inDF = read.table(paste(getwd(), "/temp_DF.csv", sep=""),
-                                     sep=",", header=T))
-
-# Precipitation
-precVar <- CoefVar(inDF = read.table(paste(getwd(), "/pre_DF.csv", sep=""),
-                                     sep=",", header=T))
-
-
-newDF <- tempVar
-
-#newDF <- newDF[order(newDF$mon_coef),]
-newDF[newDF$mon_coef >= 10, "mon_coef"] <- 10
-newDF[newDF$mon_coef <= -10, "mon_coef"] <- -10
-
-newDF$mon_coef_log <- rescale(newDF$mon_coef, to=c(-1,1))
-with(newDF, quilt.plot(lon, lat, mon_coef))
-
-newDF[newDF$inter_coef >= 2, "inter_coef"] <- 2
-newDF[newDF$inter_coef <= -2, "inter_coef"] <- -2
-with(newDF, quilt.plot(lon, lat, inter_coef))
-
-
-newDF[newDF$intra_coef >= 1, "intra_coef"] <- 1
-newDF[newDF$intra_coef <= -1, "intra_coef"] <- -1
-with(newDF, quilt.plot(lon, lat, intra_coef))
-
-####################################################################################
-
-
-
-####################################################################################
-## Animated plots
+#### Animated plots
 
 #  setwd
 setwd("/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU/animated/density")
