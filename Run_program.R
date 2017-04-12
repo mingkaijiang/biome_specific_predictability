@@ -49,10 +49,10 @@ source("R/prepare_R.R")
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
-# temperature - Run time: 
+# temperature - Run time: ~ 4 hour estimated
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: 
+# precipitation - Run time: ~ 4 hour estimated
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################

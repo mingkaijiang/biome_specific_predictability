@@ -30,67 +30,48 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     output[,1:3] <- temp[,1:3]
     
+    
+    years <- min(input$year)
+    yeare <- max(input$year)
+    yearr <- yeare-years+1
+    
+    interval <- 12
+    
+    bin <- matrix(0, ncol=14, nrow=interval)
+    dimnames(bin) <- list(NULL,c("bin_size","jan","feb","mar","apr","may","jun",
+                                 "jul","aug","sep","oct","nov","dec","whole"))
+    
+    bin[,"bin_size"] <- c("-2.5","-2","-1.5","-1","-0.5","0","0.5","1","1.5","2","2.5",">2.5")
+    
+    breaks = c(base.value-20*sd.value, 
+               base.value-2.5*sd.value, base.value-2.0*sd.value, base.value-1.5*sd.value,
+               base.value-1.0*sd.value, base.value-0.5*sd.value, base.value,
+               base.value+0.5*sd.value, base.value+1.0*sd.value, base.value+1.5*sd.value,
+               base.value+2.0*sd.value, base.value+2.5*sd.value, base.value+20*sd.value)
+    
+    col_sum <- 112
+    whole_sum <- col_sum*12
+    
+    #uncertainty with respect to time H(X)
+    HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
+    
     for (i in 1:nrow(temp))
     {
         
         X <- input[input$CRU_Site == i,]
         
-        years <- min(X$year)
-        yeare <- max(X$year)
-        yearr <- yeare-years+1
-        
-        interval <- 12
-        
-        bin <- matrix(0, ncol=14, nrow=interval)
-        dimnames(bin) <- list(NULL,c("bin_size","jan","feb","mar","apr","may","jun",
-                                     "jul","aug","sep","oct","nov","dec","whole"))
-        
-        bin[,"bin_size"] <- c("-2.5","-2","-1.5","-1","-0.5","0","0.5","1","1.5","2","2.5",">2.5")
-        
-        breaks = c(base.value-20*sd.value, 
-                   base.value-2.5*sd.value, base.value-2.0*sd.value, base.value-1.5*sd.value,
-                   base.value-1.0*sd.value, base.value-0.5*sd.value, base.value,
-                   base.value+0.5*sd.value, base.value+1.0*sd.value, base.value+1.5*sd.value,
-                   base.value+2.0*sd.value, base.value+2.5*sd.value, base.value+20*sd.value)
-        
-        jan_cut = cut(X$jan, breaks, include.lowest=TRUE,right=TRUE)
-        feb_cut = cut(X$feb, breaks, include.lowest=TRUE,right=TRUE)
-        mar_cut = cut(X$mar, breaks, include.lowest=TRUE,right=TRUE)
-        apr_cut = cut(X$apr, breaks, include.lowest=TRUE,right=TRUE)
-        may_cut = cut(X$may, breaks, include.lowest=TRUE,right=TRUE)
-        jun_cut = cut(X$jun, breaks, include.lowest=TRUE,right=TRUE)
-        jul_cut = cut(X$jul, breaks, include.lowest=TRUE,right=TRUE)
-        aug_cut = cut(X$aug, breaks, include.lowest=TRUE,right=TRUE)
-        sep_cut = cut(X$sep, breaks, include.lowest=TRUE,right=TRUE)
-        oct_cut = cut(X$oct, breaks, include.lowest=TRUE,right=TRUE)
-        nov_cut = cut(X$nov, breaks, include.lowest=TRUE,right=TRUE)
-        dec_cut = cut(X$dec, breaks, include.lowest=TRUE,right=TRUE)
-        
-        jan_freq = table(jan_cut)
-        feb_freq = table(feb_cut)
-        mar_freq = table(mar_cut)
-        apr_freq = table(apr_cut)
-        may_freq = table(may_cut)
-        jun_freq = table(jun_cut)
-        jul_freq = table(jul_cut)
-        aug_freq = table(aug_cut)
-        sep_freq = table(sep_cut)
-        oct_freq = table(oct_cut)
-        nov_freq = table(nov_cut)
-        dec_freq = table(dec_cut)
-        
-        bin[,"jan"] <- jan_freq
-        bin[,"feb"] <- feb_freq
-        bin[,"mar"] <- mar_freq
-        bin[,"apr"] <- apr_freq
-        bin[,"may"] <- may_freq
-        bin[,"jun"] <- jun_freq
-        bin[,"jul"] <- jul_freq
-        bin[,"aug"] <- aug_freq
-        bin[,"sep"] <- sep_freq
-        bin[,"oct"] <- oct_freq
-        bin[,"nov"] <- nov_freq
-        bin[,"dec"] <- dec_freq
+        bin[,"jan"] = table(cut(X$jan, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"feb"] = table(cut(X$feb, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"mar"] = table(cut(X$mar, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"apr"] = table(cut(X$apr, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"may"] = table(cut(X$may, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"jun"] = table(cut(X$jun, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"jul"] = table(cut(X$jul, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"aug"] = table(cut(X$aug, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"sep"] = table(cut(X$sep, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"oct"] = table(cut(X$oct, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"nov"] = table(cut(X$nov, breaks, include.lowest=TRUE,right=TRUE))
+        bin[,"dec"] = table(cut(X$dec, breaks, include.lowest=TRUE,right=TRUE))
         
         newbin <- as.numeric(bin[,2:13])
         newbin2 <- matrix(newbin,nrow=interval,ncol=12)
@@ -100,9 +81,6 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
             newbin3[n,] = sum(newbin2[n,1:12])
         }
         newbin <- cbind(newbin2,newbin3)
-        
-        col_sum <- sum(table(X$jan))
-        whole_sum <- col_sum*12
         
         #uncertainty with respect to time H(X)
         HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
