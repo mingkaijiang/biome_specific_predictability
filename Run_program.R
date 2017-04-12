@@ -88,11 +88,7 @@ plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
 ### Step 1. Calculate summary df
 summary <- summaryPrep(plotDF)
 
-### Step 2. Compute the min and max for summary statistics 
-#minDF <- summaryPrep_min(plotDF)
-#maxDF <- summaryPrep_max(plotDF)
-
-### Step 3. Basic summary figures
+### Step 2. Basic summary figures
 # plot 2d with two directional error bars
 pdf(paste0(analysesDir, "/summary_2_d.pdf"),
     width = 10, height = 8)
@@ -103,7 +99,6 @@ dev.off()
 pdf(paste0(analysesDir, "/radar_plot_individual.pdf"))
 radar_summary(summary)
 dev.off()
-
 
 # Plot radar plots for summary data, all biomes 1 plot
 pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
