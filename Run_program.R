@@ -49,11 +49,28 @@ source("R/prepare_R.R")
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
-# temperature - Run time: ~ 4 hour estimated
-t1 <- system.time(PCM_temp(sourceDir = dataDir, destDir = dataDir))
+### Step 1. entire period of 1901-2012
+# temperature - Run time: ~ 3 hour 
+PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 4 hour estimated
-t2 <- system.time(PCM_prec(sourceDir = dataDir, destDir = dataDir))
+# precipitation - Run time: ~ 3 hour 
+PCM_prec(sourceDir = dataDir, destDir = dataDir)
+
+
+### Step 2. period of 1991-2012
+# temperature - Run time: ~ 3 hour 
+PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation - Run time: ~ 3 hour 
+PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
+
+
+### step 3. period of 1901-1990
+# temperature - Run time: ~ 3 hour 
+PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation - Run time: ~ 3 hour 
+PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums

@@ -1,13 +1,15 @@
 ####################################################################################
-##Function to calculate Colwell index for temperature
-##112 years of monthly data, absolute values, 12 bin sizes
-##Classification scheme: -3 stdev + mean to +3 stdev + mean
-PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
+##Function to calculate Colwell index for precipitation
+## The Colwell index is calculated for period 1991-2012 only,
+## based on its corresponding monthly data, absolute values, 12 bin sizes
+##Classification scheme: log scheme based on the entire period of 112 years
+
+PCM_prec_1991_2012<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
-    #require(data.table)
+    require(data.table)
     
-    inName <- paste(sourceDir, "temp_DF.csv",sep="/")
-    outName <- paste(destDir, "temp_PCM.csv", sep="/")
+    inName <- paste(sourceDir, "pre_DF.csv",sep="/")
+    outName <- paste(destDir, "pre_PCM_1991_2012.csv", sep="/")
     
     input <- fread(inName, sep=",", header=T)
     input <- as.data.frame(input)
@@ -16,8 +18,7 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     dd <- as.data.frame(input[,5:16])
     
-    base.value <- round(mean(colMeans(dd)),2)
-    sd.value <- round(sd(sapply(dd, sd)),2)
+    base.value <- 2.1 ## 2.1^11 = 3503, max 3434
     
     output <- matrix(nrow=nrow(temp),ncol=24)
     output <- as.data.frame(output, row.names = NULL, stringsAsFactors = FALSE)
@@ -30,6 +31,8 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     output[,1:3] <- temp[,1:3]
     
+    # prepare the subset of df 
+    input <- input[input$year >= 1991, ]
     
     years <- min(input$year)
     yeare <- max(input$year)
@@ -41,27 +44,21 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     dimnames(bin) <- list(NULL,c("bin_size","jan","feb","mar","apr","may","jun",
                                  "jul","aug","sep","oct","nov","dec","whole"))
     
-    bin[,"bin_size"] <- c("-2.5","-2","-1.5","-1","-0.5","0","0.5","1","1.5","2","2.5",">2.5")
+    bin[,"bin_size"] <- c("0",base.value^1, base.value^2, base.value^3, 
+                          base.value^4, base.value^5, base.value^6,
+                          base.value^7, base.value^8, base.value^9, base.value^10,
+                          base.value^11)
     
-    breaks = c(base.value-20*sd.value, 
-               base.value-2.5*sd.value, base.value-2.0*sd.value, base.value-1.5*sd.value,
-               base.value-1.0*sd.value, base.value-0.5*sd.value, base.value,
-               base.value+0.5*sd.value, base.value+1.0*sd.value, base.value+1.5*sd.value,
-               base.value+2.0*sd.value, base.value+2.5*sd.value, base.value+20*sd.value)
-    
-    col_sum <- 112
-    whole_sum <- col_sum*12
-    
-    #uncertainty with respect to time H(X)
-    HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
-    
-    s <- interval
-    t <- 12
+    breaks = c("0","0.00001",base.value^1, base.value^2, base.value^3, 
+               base.value^4, base.value^5, base.value^6,
+               base.value^7, base.value^8, base.value^9, base.value^10,
+               base.value^11)
     
     for (i in 1:nrow(temp))
     {
         
         X <- input[input$CRU_Site == i,]
+        
         
         bin[,"jan"] = table(cut(X$jan, breaks, include.lowest=TRUE,right=TRUE))
         bin[,"feb"] = table(cut(X$feb, breaks, include.lowest=TRUE,right=TRUE))
@@ -84,6 +81,9 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
             newbin3[n,] = sum(newbin2[n,1:12])
         }
         newbin <- cbind(newbin2,newbin3)
+        
+        col_sum <- sum(table(X$jan))
+        whole_sum <- col_sum*12
         
         #uncertainty with respect to time H(X)
         HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
@@ -112,6 +112,8 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
         
         #Conditional uncertainty with regard to state, with time given, HXofY
         HXofY <- HofXY - HofX
+        s <- interval
+        t <- 12
         
         #predictability (P), constancy(C) and contingency (M)
         P <- 1-(HXofY/log10(s))
@@ -161,4 +163,3 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     write.table(output,outName,sep=",",row.names=F)
 }
-

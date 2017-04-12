@@ -1,17 +1,18 @@
 ####################################################################################
 ##Function to calculate Colwell index for temperature
-##112 years of monthly data, absolute values, 12 bin sizes
-##Classification scheme: -3 stdev + mean to +3 stdev + mean
-PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
+## The Colwell index is calculated for period 1901-1990 only,
+## based on its corresponding monthly data, absolute values, 12 bin sizes
+##Classification scheme: -3 stdev + mean to +3 stdev + mean of the entire 112 period
+PCM_temp_1901_1990<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
     #require(data.table)
     
     inName <- paste(sourceDir, "temp_DF.csv",sep="/")
-    outName <- paste(destDir, "temp_PCM.csv", sep="/")
+    outName <- paste(destDir, "temp_PCM_1901_1990.csv", sep="/")
     
     input <- fread(inName, sep=",", header=T)
     input <- as.data.frame(input)
-    
+
     temp <- subset(input, year == 1901)
     
     dd <- as.data.frame(input[,5:16])
@@ -30,6 +31,8 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     
     output[,1:3] <- temp[,1:3]
     
+    # prepare the subset of df
+    input <- input[input$year <= 1990, ]
     
     years <- min(input$year)
     yeare <- max(input$year)
@@ -48,12 +51,6 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
                base.value-1.0*sd.value, base.value-0.5*sd.value, base.value,
                base.value+0.5*sd.value, base.value+1.0*sd.value, base.value+1.5*sd.value,
                base.value+2.0*sd.value, base.value+2.5*sd.value, base.value+20*sd.value)
-    
-    col_sum <- 112
-    whole_sum <- col_sum*12
-    
-    #uncertainty with respect to time H(X)
-    HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
     
     s <- interval
     t <- 12
@@ -84,6 +81,9 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
             newbin3[n,] = sum(newbin2[n,1:12])
         }
         newbin <- cbind(newbin2,newbin3)
+        
+        col_sum <- sum(table(X$jan))
+        whole_sum <- col_sum*12
         
         #uncertainty with respect to time H(X)
         HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
