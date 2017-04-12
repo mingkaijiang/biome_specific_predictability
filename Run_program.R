@@ -50,10 +50,10 @@ source("R/prepare_R.R")
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
 # temperature - Run time: ~ 4 hour estimated
-PCM_temp(sourceDir = dataDir, destDir = dataDir)
+t1 <- system.time(PCM_temp(sourceDir = dataDir, destDir = dataDir))
 
 # precipitation - Run time: ~ 4 hour estimated
-PCM_prec(sourceDir = dataDir, destDir = dataDir)
+t2 <- system.time(PCM_prec(sourceDir = dataDir, destDir = dataDir))
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums
@@ -92,7 +92,7 @@ summary <- summaryPrep(plotDF)
 # plot 2d with two directional error bars
 pdf(paste0(analysesDir, "/summary_2_d.pdf"),
     width = 10, height = 8)
-summary2dimage(summary)
+summary_2d_image(summary)
 dev.off()
 
 # Plot radar plots for summary data, 1 biome per plot

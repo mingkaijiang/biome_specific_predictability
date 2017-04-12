@@ -1,6 +1,6 @@
 ####################################################################################
 # Plotting summary profile using 2-dimensional error bars
-summary2dimage <- function(summary) {
+summary_2d_image <- function(summary) {
     
     # setting graphics
     #require(psych)
