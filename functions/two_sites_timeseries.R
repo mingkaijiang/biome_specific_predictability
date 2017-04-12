@@ -3,16 +3,19 @@
 TwoSites_timeseries <- function(oz) {
     
     # library
-    require(matrixStats)
-    require(reshape2)
-    require(lattice)
-    require(gridExtra)
+    #require(matrixStats)
+    #require(reshape2)
+    #require(lattice)
+    #require(gridExtra)
     
     # read in raw climate data
-    temp <- read.table(paste(getwd(), "/temp_DF_processed.csv", sep=""),
-                       header=T,sep=",")
-    prec <- read.table(paste(getwd(), "/pre_DF_processed.csv", sep=""),
-                       header=T,sep=",")
+    temp <- fread(paste0(dataDir, "/temp_DF.csv"),
+                  header=T,sep=",")
+    prec <- fread(paste0(dataDir, "/pre_DF.csv"),
+                  header=T,sep=",")
+    
+    temp <- as.data.frame(temp)
+    prec <- as.data.frame(prec)
     
     # prepare the site coordinates
     Ginlat <- oz[oz$SiteName == "Gingin", "LAT_CRU"]

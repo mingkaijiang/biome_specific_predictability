@@ -235,17 +235,16 @@ dev.off()
 # Step 2. Ozflux site extractions
 ozDF <- ozflux_extraction(plotDF)
 
-# create pdf file of Australia maps
-pdf(paste(getwd(), "/Oz_barplot.pdf", sep=""))
+# Step 3. plot ozflux comparisons
+pdf(paste0(analysesDir, "/Oz_barplot.pdf"))
 OzPlot(ozDF)
 dev.off()
 
-####################################################################################
-# Extract Emerald and Gingin time series raw climate and plot
+# Step 4. two site comparison - extracting points  - may not needed
 oz_summary <- TwoSites_summary(ozDF)
 
-# create pdf file of Australia maps
-pdf(paste(getwd(), "/Oz_timeseries.pdf", sep=""),
+# step 5. two site time series plot
+pdf(paste0(analysesDir, "/Oz_timeseries.pdf"),
     width = 10, height = 8)
 TwoSites_timeseries(ozDF)
 dev.off()

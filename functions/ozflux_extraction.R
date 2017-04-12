@@ -2,7 +2,7 @@
 ozflux_extraction <- function(cru) {
     
     # read table
-    ozsite <- read.table("/Users/mingkaijiang/Documents/PostDoc/OzFlux/Site_coordinates.csv",
+    ozsite <- read.table(paste0(dataDir, "/cru_biome_data/ozflux_site_coordinates.csv"),
                          header=T,sep=",")
     
     # Project ozflux grids to CRU grids
