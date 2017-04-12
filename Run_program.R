@@ -190,54 +190,49 @@ TotalPCA(plotDF)
 dev.off()
 
 
-# biome specific PCA analysis
+# biome specific PCA analysis - takes very long to run!
 pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
 BiomePCA(plotDF)
 dev.off()
 
 
-
-
-
-
-
-
-
 ####################################################################################
-## Prepare subset of data include 50th percentile closest to mean of:
-## 1. temp vs. prec
-## 2. temp P vs. prec P
-## 3. temp C vs. prec C
-## 4. temp M vs. prec M
+#### Prepare subset of data: only the 50th percentile closest to mean of:
+#### 1. temp vs. prec
+#### 2. temp P vs. prec P
+#### 3. temp C vs. prec C
+#### 4. temp M vs. prec M
 
+### Step 1. subsetting
 abs_sub <- Percentile50_absolute(plotDF)
 p_sub <- Percentile50_p(plotDF)
 c_sub <- Percentile50_c(plotDF)
 m_sub <- Percentile50_m(plotDF)
 
-####################################################################################
-## Plot 50th percentile data
-pdf(paste(getwd(), "Biome_bagplot_50.pdf", sep="/"),
+### Step 2. plotting
+# Plot bagplot 50th percentile data
+pdf(paste0(analysesDir, "/Biome_bagplot_50.pdf"),
     width = 22, height = 26)
 plot50th(abs_sub, p_sub, plotDF)
 dev.off()
 
-####################################################################################
-## Plot spatially the 50th percentile data
-pdf(paste(getwd(), "/Spatial_50th.pdf", sep=""),
+# Plot spatially the 50th percentile data
+pdf(paste0(analysesDir, "/Spatial_50th.pdf"),
     width = 28, height = 16)
 spatial50(abs_sub, p_sub)
 dev.off()
 
 
 ####################################################################################
-# create pdf file of Australia maps
-pdf(paste(getwd(), "/Oz_maps_of_climate.pdf", sep=""),
+#### Case studies to illustrate usefulness of colwell index 
+### Case 1. Australian ozflux sites
+# Step 1. Australia continental climate maps
+pdf(paste0(analysesDir, "/Oz_maps_of_climate.pdf"),
     width = 10, height = 8)
-ozDF <- Aus_Plot(plotDF)
+Aus_Plot(plotDF)
 dev.off()
-####################################################################################
-## Ozflux site extractions
+
+# Step 2. Ozflux site extractions
 ozDF <- ozflux_extraction(plotDF)
 
 # create pdf file of Australia maps
