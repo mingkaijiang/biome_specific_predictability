@@ -325,30 +325,6 @@ dev.off()
 ####################################################################################
 #### Animated plots
 
-#  setwd
-setwd("/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU/animated/density")
-# Plot animated density plot
-AnimatedDensityPlot(plotDF)
-## convert into animation
-system("convert -delay 100 *.png animated.gif")
-
-#  setwd
-setwd("/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU/animated/radar")
-# plot animated radar plot
-Animated_radar(summary)
-## convert into animation
-system("convert -delay 100 *.png animated.gif")
-
-
-#  setwd
-setwd("/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU/animated/PCA")
-## convert into animation
-system("convert -delay 100 *.png animated.gif")
-
-#  setwd
-setwd("/Users/mingkaijiang/Documents/Predictability_Project/P4_Literature_review/data/CRU/animated/IE")
-## convert into animation
-system("convert -delay 100 *.png animated.gif")
 
 ####################################################################################
 # Conver image pdf into jpeg files

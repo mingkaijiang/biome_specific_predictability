@@ -73,9 +73,11 @@ plotDir <- paste0(cwd, "/Plots")
 tableDir <- paste0(cwd, "/Tables")
 analysesDir <- paste0(cwd, "/analyses")
 corDir <- paste0(cwd, "/data/cru_biome_data")
+animatedDir <- paste0(cwd, "/analyses/animated")
 
 #### Create the necessary sub-folders
 dir.create(ncDir, showWarnings = FALSE)
+dir.create(animatedDir, showWarnings = FALSE)
 
 ################# Graphic settings ###########################
 # save default par()
