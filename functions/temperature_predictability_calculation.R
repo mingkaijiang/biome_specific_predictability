@@ -55,6 +55,9 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
     #uncertainty with respect to time H(X)
     HofX <- -((col_sum/whole_sum)*log10(col_sum/whole_sum))*12
     
+    s <- interval
+    t <- 12
+    
     for (i in 1:nrow(temp))
     {
         
@@ -109,52 +112,50 @@ PCM_temp<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
         
         #Conditional uncertainty with regard to state, with time given, HXofY
         HXofY <- HofXY - HofX
-        s <- interval
-        t <- 12
         
         #predictability (P), constancy(C) and contingency (M)
         P <- 1-(HXofY/log10(s))
         C <- 1-(HofY/log10(s))
         M <- (HofX+HofY-HofXY)/log10(s)
-        CoverP <- C/P
-        MoverP <- M/P
+        #CoverP <- C/P
+        #MoverP <- M/P
+        #
+        ##mutual information, I(XY)
+        #IofXY <- HofY - HXofY
+        #
+        ##deviation from homogeneity of the columns of the matrix for constancy, GC
+        #GC <- 2*whole_sum*(log(s)-HofY)
+        #C_free <- s-1
+        #
+        ##deviation from homogeneity of the columns of the matrix for contingency, GM
+        #GM <- 2*whole_sum*(HofX+HofY-HofXY)
+        #M_free <- (s-1)*(t-1)
+        #
+        ##deviation from homogeneity of the columns of the matrix for predictability, GP
+        #GP <- GM + GC
+        #P_free <- (s-1)*t
         
-        #mutual information, I(XY)
-        IofXY <- HofY - HXofY
-        
-        #deviation from homogeneity of the columns of the matrix for constancy, GC
-        GC <- 2*whole_sum*(log(s)-HofY)
-        C_free <- s-1
-        
-        #deviation from homogeneity of the columns of the matrix for contingency, GM
-        GM <- 2*whole_sum*(HofX+HofY-HofXY)
-        M_free <- (s-1)*(t-1)
-        
-        #deviation from homogeneity of the columns of the matrix for predictability, GP
-        GP <- GM + GC
-        P_free <- (s-1)*t
-        
-        output[i, "year"] <- yeare
-        output[i,"year_count"] <- col_sum
-        output[i,"seasons"] <- whole_sum
-        output[i,"HofX"] <- round(HofX,3)
-        output[i,"HofY"] <- round(HofY,3)
-        output[i,"HofXY"] <- round(HofXY,3)
-        output[i,"HXofY"] <- round(HXofY,3)
-        output[i,"s"] <- s
-        output[i,"t"] <- t
+        #output[i, "year"] <- yeare
+        #output[i,"year_count"] <- col_sum
+        #output[i,"seasons"] <- whole_sum
+        #output[i,"HofX"] <- round(HofX,3)
+        #output[i,"HofY"] <- round(HofY,3)
+        #output[i,"HofXY"] <- round(HofXY,3)
+        #output[i,"HXofY"] <- round(HXofY,3)
+        #output[i,"s"] <- s
+        #output[i,"t"] <- t
         output[i,"P"] <- round(P,3)
         output[i,"C"] <- round(C,3)
         output[i,"M"] <- round(M,3)
-        output[i,"CbyP"] <- round(CoverP,3)
-        output[i,"MbyP"] <- round(MoverP,3)
-        output[i,"Mutual"] <- round(IofXY,3)
-        output[i,"GC"] <- round(GC,3)
-        output[i,"C_freedom"] <- C_free
-        output[i,"GM"] <- round(GM,3)
-        output[i,"M_freedom"] <- M_free
-        output[i,"GP"] <- round(GP,3)
-        output[i,"P_freedom"] <- P_free
+        #output[i,"CbyP"] <- round(CoverP,3)
+        #output[i,"MbyP"] <- round(MoverP,3)
+        #output[i,"Mutual"] <- round(IofXY,3)
+        #output[i,"GC"] <- round(GC,3)
+        #output[i,"C_freedom"] <- C_free
+        #output[i,"GM"] <- round(GM,3)
+        #output[i,"M_freedom"] <- M_free
+        #output[i,"GP"] <- round(GP,3)
+        #output[i,"P_freedom"] <- P_free
         
     }
     
