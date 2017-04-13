@@ -21,7 +21,7 @@ source("R/prepare_R.R")
 #### Downloading global gridded CRU TS3.21 temperature and precipitation data
 #### Assume you have downloaded the data as registration is required to download the data
 #### Put the raw .nc data into folder "/data/raw_data"
-#### Then run the following codes to process them
+download_CRU_data()
 
 ####################################################################################
 #### Preliminary processing CRU climate data 
