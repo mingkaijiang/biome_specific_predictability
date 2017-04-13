@@ -58,19 +58,29 @@ PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 
 ### Step 2. period of 1991-2012
-# temperature - Run time: ~ 3 hour 
+# temperature - Run time: ~ 1 hour 
 PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 3 hour 
+# precipitation - Run time: ~ 1 hour 
 PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
 
 
 ### step 3. period of 1901-1990
-# temperature - Run time: ~ 3 hour 
+# temperature - Run time: ~ 2.5 hour 
 PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 3 hour 
+# precipitation - Run time: ~ 2.5 hour 
 PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
+
+### Step 4. compare the spatial and biome_specific differences between the two time period
+# spatial comparisons
+pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
+    width = 10, height = 8)
+two_period_spatial_diff()
+dev.off()
+
+# precipitation
+
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums
