@@ -72,14 +72,18 @@ PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
 # precipitation - Run time: ~ 2.5 hour 
 PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
 
-### Step 4. compare the spatial and biome_specific differences between the two time period
+### Step 4. compare the spatial and biome-specific differences between the two time period
 # spatial comparisons
 pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
     width = 10, height = 8)
 two_period_spatial_diff()
 dev.off()
 
-# precipitation
+# biome-specific comparisons
+pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
+    width = 10, height = 8)
+two_period_biome_diff()
+dev.off()
 
 
 ####################################################################################
