@@ -46,6 +46,12 @@ download_CRU_data()
 #                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
 
 #### Step 3. climate data detrending  -- Note: not needed for now
+# temperature
+temp_detrend(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation
+prec_detrend(sourceDir = dataDir, destDir = dataDir)
+
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data

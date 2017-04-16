@@ -1,11 +1,11 @@
 ####################################################################################
-##Function to detrend the temperature data
-temp_detrend<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
+##Function to detrend the precipitation data
+prec_detrend<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRECTORY)
 {
     #require(data.table)
     
-    inName <- paste(sourceDir, "temp_DF.csv",sep="/")
-    outName <- paste(destDir, "temp_detrended.csv", sep="/")
+    inName <- paste(sourceDir, "pre_DF.csv",sep="/")
+    outName <- paste(destDir, "prec_detrended.csv", sep="/")
     
     input <- fread(inName, sep=",", header=T)
 
