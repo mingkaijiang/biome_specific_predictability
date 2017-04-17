@@ -85,12 +85,25 @@ prec.lab <- c("0", "2.3", "5.3", "12.2", "28", "64",
               ">4142")
 
 # prepare color list
-color.list <- c("#882E72", "#B178A6", "#D6C1DE", 
-                "#1965B0", "#5289C7", "#7BAFDE", 
-                "#4EB265", "#90C987", "#CAE0AB", 
-                "#F7EE55", "#F6C141", "#F1932D", 
-                "#E8601C", "#DC050C")
+#color.list <- c("#882E72", "#B178A6", "#D6C1DE", 
+#                "#1965B0", "#5289C7", "#7BAFDE", 
+#                "#4EB265", "#90C987", "#CAE0AB", 
+#                "#F7EE55", "#F6C141", "#F1932D", 
+#                "#E8601C", "#DC050C")
 
+#color.list <- palette(rainbow(14))
+
+color.list <- c("#ff0000","#8bc51f","#ff3d8e",
+    "#71db97","#f13e3c","#3cceff",
+    "#ffab17","#ffa3d1","#006717",
+    "#ff6e33","#000080","#c56400",
+    "#d0c973","#88464b")
+
+#color.list <- c("#bf73a6","#5ab74e","#b759c4",
+#                "#c3b23c","#6c67c8","#91a24e",
+#                "#cf4387","#4fba9e","#d2522c",
+#                "#6b93cf","#b17731","#4a763a",
+#                "#c34854","#db8a72")
 
 ################# Biome settings ###########################
 # prepare biome name abbrev. list

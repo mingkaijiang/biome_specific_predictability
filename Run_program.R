@@ -80,7 +80,7 @@ summary <- summaryPrep(plotDF)
 ### Step 2. Basic summary figures
 # plot 2d with two directional error bars
 pdf(paste0(analysesDir, "/summary_2_d.pdf"),
-    width = 10, height = 8)
+    width = 12, height = 8)
 summary_2d_image(summary)
 dev.off()
 
