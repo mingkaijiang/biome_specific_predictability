@@ -181,58 +181,42 @@ dev.off()
 #### Case studies to illustrate usefulness of colwell index 
 
 ### Case 3. Australia
-# Step 1. Extract Australia and check with the global climate
-pdf(paste0(analysesDir, "/Australia_maps.pdf"),
-    width = 14, height = 12)
-Australia_process(plotDF)
-dev.off()
-
-# Step 2. 
-pdf(paste0(analysesDir, "/Australia_compare.pdf"),
-    width = 10, height = 8)
-Australia_compare(plotDF)
-dev.off()
-
-# Step 3. 
+# Step 1. 
 # Extract Australia and check with the global climate
 pdf(paste0(analysesDir, "/Australia_maps_image.pdf"),
     width = 14, height = 10)
 Australia_process_map(plotDF)
 dev.off()
 
-# Step 4. Biome #4
+# Step 2. Biome #4
 pdf(paste0(analysesDir, "/Australia_4.pdf"))
 Australia_compare_4(plotDF)
 dev.off()
 
-# Step 5. Biome #7
+# Step 3. Biome #7
 pdf(paste0(analysesDir, "/Australia_7.pdf"))
 Australia_compare_7(plotDF)
 dev.off()
 
-# Step 6. Biome #8
+# Step 4. Biome #8
 pdf(paste0(analysesDir, "/Australia_8.pdf"))
 Australia_compare_8(plotDF)
 dev.off()
 
-# Step 7. Biome #12
+# Step 5. Biome #12
 pdf(paste0(analysesDir, "/Australia_12.pdf"))
 Australia_compare_12(plotDF)
 dev.off()
 
-# Step 8. Biome #13
+# Step 6. Biome #13
 pdf(paste0(analysesDir, "/Australia_13.pdf"))
 Australia_compare_13(plotDF)
 dev.off()
 
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
-# Step 1. Individual biome comparison - not recommended to run
-# pdf(paste0(analysesDir, "/BiomeDiffer.pdf"))
-# BiomeDifferPlot(plotDF)
-# dev.off()
 
-# Step 2. Compare 2 biomes at one time where they overlap in MAT and MAP
+# Step 1. Compare 2 biomes at one time where they overlap in MAT and MAP
 #         if prec P and temp P differ among bomes
 #         and the subsequent C and M relationships
 #         Plot a matrix and fill color
