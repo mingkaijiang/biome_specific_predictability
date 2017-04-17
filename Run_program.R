@@ -179,29 +179,6 @@ dev.off()
 
 ####################################################################################
 #### Case studies to illustrate usefulness of colwell index 
-### Case 1. Australian ozflux sites
-# Step 1. Australia continental climate maps
-pdf(paste0(analysesDir, "/Oz_maps_of_climate.pdf"),
-    width = 10, height = 8)
-Aus_Plot(plotDF)
-dev.off()
-
-# Step 2. Ozflux site extractions
-ozDF <- ozflux_extraction(plotDF)
-
-# Step 3. plot ozflux comparisons
-pdf(paste0(analysesDir, "/Oz_barplot.pdf"))
-OzPlot(ozDF)
-dev.off()
-
-# Step 4. two site comparison - extracting points  - may not needed
-oz_summary <- TwoSites_summary(ozDF)
-
-# step 5. two site time series plot
-pdf(paste0(analysesDir, "/Oz_timeseries.pdf"),
-    width = 10, height = 8)
-TwoSites_timeseries(ozDF)
-dev.off()
 
 ### Case 2. Tasmania
 # Step 1. Extract Tasmania and check with the global climate
