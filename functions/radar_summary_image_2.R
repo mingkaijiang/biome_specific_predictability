@@ -13,11 +13,12 @@ radar_summary_image2 <- function(inDF) {
     names(newDF2) <- c("temp", "prec", "temp P", "prec P")
     rownames(newDF2) <- biome
     
-    op <- par(mfrow=c(5,3),
+    op <- par(xpd=T,
+              mfrow=c(5,3),
               mar=c(1,0.2,1.5,0.2))
     
     spider(y=1:14, x=1:4, data=newDF2, rescale=T, 
-           main = biome, connect=T, ncol=1)
+           main = biome, connect=T, ncol=1, fill=T)
     
     par(op)
 }
