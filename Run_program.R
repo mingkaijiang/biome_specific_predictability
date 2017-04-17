@@ -178,33 +178,6 @@ dev.off()
 
 
 ####################################################################################
-#### Prepare subset of data: only the 50th percentile closest to mean of:
-#### 1. temp vs. prec
-#### 2. temp P vs. prec P
-#### 3. temp C vs. prec C
-#### 4. temp M vs. prec M
-
-#### Step 1. subsetting
-#abs_sub <- Percentile50_absolute(plotDF)
-#p_sub <- Percentile50_p(plotDF)
-#c_sub <- Percentile50_c(plotDF)
-#m_sub <- Percentile50_m(plotDF)
-#
-#### Step 2. plotting
-## Plot bagplot 50th percentile data
-#pdf(paste0(analysesDir, "/Biome_bagplot_50.pdf"),
-#    width = 22, height = 26)
-#plot50th(abs_sub, p_sub, plotDF)
-#dev.off()
-#
-## Plot spatially the 50th percentile data
-#pdf(paste0(analysesDir, "/Spatial_50th.pdf"),
-#    width = 28, height = 16)
-#spatial50(abs_sub, p_sub)
-#dev.off()
-
-
-####################################################################################
 #### Case studies to illustrate usefulness of colwell index 
 ### Case 1. Australian ozflux sites
 # Step 1. Australia continental climate maps
