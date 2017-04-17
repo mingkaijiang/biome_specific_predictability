@@ -116,39 +116,7 @@ SummaryPCA_image(summary2)
 dev.off()
 
 ####################################################################################
-#### Conduct biome-specific analyses and plottings
-### Step 1. basic 2-d plots
-
-# 2-d density plot  - takes very long to run!
-# pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
-    width = 22, height = 26)
-# biome_density_plot(plotDF)
-# dev.off()
-
-
-### Step 2. kernel density plot
-# pdf(paste0(analysesDir, "/kernel_density.pdf"))
-# kernel_multi(plotDF)
-# dev.off()
-
-### Step 4. PCA analysis  - takes very long to run!
-# PCA analysis for all data, and output PC12 onto CRU grids
-# pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
-# TotalPCA(plotDF)
-# dev.off()
-
-
-# biome specific PCA analysis - takes very long to run!
-# pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
-# BiomePCA(plotDF)
-# dev.off()
-
-####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
-# Step 2. Compare 2 biomes at one time where they overlap in MAT and MAP
-#         if prec P and temp P differ among bomes
-#         and the subsequent C and M relationships
-#         Plot a matrix and fill color
 pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1901_1990.pdf"))
 BiomeDifferStats(plotDF1)
 dev.off()
@@ -157,15 +125,3 @@ pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1991_2012.pdf"))
 BiomeDifferStats(plotDF2)
 dev.off()
 
-####################################################################################
-#### End of analysis, restoring settings
-### Step 1. turn warning message back on
-options(warn=0)
-
-### Step 2. restore par information
-par(opar)
-
-#### Step 3. Clear workspace
-rm(list=ls(all=TRUE))
-
-####################################################################################
