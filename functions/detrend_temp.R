@@ -22,6 +22,7 @@ temp_detrend<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.
     for(i in 1:l) {
         tempDF <- as.data.frame(inDF.spl[[i]])
         for (j in 5:16) {
+            ### Method 1 ------------------------------------------
             outDF.spl[[i]][,j] <- detrend(unlist(tempDF[,j]))
         }
     }

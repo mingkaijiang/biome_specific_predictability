@@ -3,7 +3,7 @@
 classPrep <- function(inPath) {
     
     # read in full dataset (gridded temperature means, precipitation means and sums, temp and prec PCM)
-    inDF <- read.table(paste0(dataDir, "/biome_temp_prec_full.csv"), 
+    inDF <- read.table(inPath, 
                        header=T,sep=",")
     
     colnames(inDF) <- c("CRU_Site", "lon", "lat", "tempP",

@@ -1,11 +1,7 @@
-#### Main program 
+#### Supplementary program to compare two periods
 #### Purpose: 
-#### 1. compute temperature and precipitation predictability based on CRU dataset
-#### 2. compare mean annual climate statistics and those of the predictability
-#### 3. Assign biome information and constrast spatial differences
-#### 4. Conduct case studies to differentiate the biome-specific climate patterns
-#### 5. perform statistical analyses to identify the role of predictability 
-#### 6. Make summary tables and manuscript plots
+#### 1. to compute Colwell index for two periods (1901-1990 and 1991-2012)
+#### 2. to compare how climatic spaces differ over the two periods
 ####
 #### Author: Mingkai Jiang (m.jiang@westernsydney.edu.au)
 #### 
@@ -17,52 +13,10 @@ rm(list=ls(all=TRUE))
 #### prepare wk spaces and libraries
 source("R/prepare_R.R")
 
-####################################################################################
-#### Downloading global gridded CRU TS3.21 temperature and precipitation data
-#### Assume you have downloaded the data as registration is required to download the data
-#### Put the raw .nc data into folder "/data/raw_data"
-download_CRU_data()
-
-####################################################################################
-#### Preliminary processing CRU climate data 
-
-#### Step 1. convert from nc to csv file format
-## CRU temperature
-#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
-#          outFile=paste0(dataDir,"/temp_DF.csv"))
-#
-## CRU precipitation
-#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
-#          outFile=paste0(dataDir,"/prec_DF.csv"))
-#
-#
-#### Step 2. remove duplicated data entries  -- Note: may not needed.
-## temperature
-#remove_duplicate(inFile=paste0(dataDir,"/temp_DF.csv"),
-#                 outFile=paste0(dataDir,"/temp_DF_processed.csv"))
-#
-## precipitation
-#remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
-#                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
-
-#### Step 3. climate data detrending  -- Note: not needed for now
-# temperature
-temp_detrend(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation
-prec_detrend(sourceDir = dataDir, destDir = dataDir)
-
+#### Assume the main program has completed
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
-### Step 1. entire period of 1901-2012
-# temperature - Run time: ~ 3 hour 
-PCM_temp(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation - Run time: ~ 3 hour 
-PCM_prec(sourceDir = dataDir, destDir = dataDir)
-
-
 ### Step 2. period of 1991-2012
 # temperature - Run time: ~ 1 hour 
 PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
@@ -92,68 +46,82 @@ two_period_biome_diff()
 dev.off()
 
 ####################################################################################
-#### Calculate climate annual mean and annual sums
-# temperature
-tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
-          outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
-
-# precipitation
-precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
-             outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
-
-####################################################################################
 #### Combine all dataframes
 ### Step 1. Project BIOME information onto PCM file
+# 1901-1990
 biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
-             tempFile=paste0(dataDir, "/temp_PCM.csv"),
-             precFile=paste0(dataDir, "/pre_PCM.csv"), 
-             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
+             tempFile=paste0(dataDir, "/temp_PCM_1901_1990.csv"),
+             precFile=paste0(dataDir, "/pre_PCM_1901_1990.csv"), 
+             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"))
+
+# 1991-2012
+biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
+             tempFile=paste0(dataDir, "/temp_PCM_1991_2012.csv"),
+             precFile=paste0(dataDir, "/pre_PCM_1991_2012.csv"), 
+             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"))
 
 ### Step 2. Save PCM with prec means and sums and temp means
+# 1901-1990
 match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
-             precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
-             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"),
-             fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
+              precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"),
+              fullFile=paste0(dataDir, "/biome_temp_prec_full_1901_1990.csv"))
+# 1991-2012
+match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
+              precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"),
+              fullFile=paste0(dataDir, "/biome_temp_prec_full_1991_2012.csv"))
 
 ### Step 3. Preliminary processing of the df for plotting and table purposes
 # generate temp and prec classes and ie factor
-plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
+plotDF1 <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full_1901_1990.csv"))
+plotDF2 <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full_1991_2012.csv"))
 
 ####################################################################################
 #### Compute summary statistics and figures
 ### Step 1. Calculate summary df
-summary <- summaryPrep(plotDF)
+summary1 <- summaryPrep(plotDF1)
+summary2 <- summaryPrep(plotDF2)
 
 ### Step 2. Basic summary figures
 # plot 2d with two directional error bars
-pdf(paste0(analysesDir, "/summary_2_d.pdf"),
+pdf(paste0(analysesDir, "/summary_2_d_1901_1990.pdf"),
     width = 10, height = 8)
-summary_2d_image(summary)
+summary_2d_image(summary1)
 dev.off()
 
-# Plot radar plots for summary data, 1 biome per plot
-pdf(paste0(analysesDir, "/radar_plot_individual.pdf"))
-radar_summary(summary)
+pdf(paste0(analysesDir, "/summary_2_d_1991_2012.pdf"),
+    width = 10, height = 8)
+summary_2d_image(summary2)
 dev.off()
 
 # Plot radar plots for summary data, all biomes 1 plot
-pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
+pdf(paste0(analysesDir, "/radar_plot_combined_1901_1990.pdf"),
     width = 8, height = 12)
-radar_summary_image2(summary)
+radar_summary_image2(summary1)
 dev.off()
 
-# Plot star plots for summary data
-pdf(paste0(analysesDir, "/star_plot.pdf"))
-star_summary_image(summary)
+pdf(paste0(analysesDir, "/radar_plot_combined_1991_2012.pdf"),
+    width = 8, height = 12)
+radar_summary_image2(summary2)
 dev.off()
 
 # PCA analysis for each biome using summary statistics
-pdf(paste0(analysesDir, "/PCA_summary.pdf"))
-SummaryPCA(summary)
+pdf(paste0(analysesDir, "/PCA_summary_1901_1990.pdf"))
+SummaryPCA(summary1)
 dev.off()
 
-pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure.pdf"))
-SummaryPCA_image(summary)
+pdf(paste0(analysesDir, "/PCA_summary_1991_2012.pdf"))
+SummaryPCA(summary2)
+dev.off()
+
+# PCA for manuscript 
+pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1901_1990.pdf"))
+SummaryPCA_image(summary1)
+dev.off()
+
+pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1991_2012.pdf"))
+SummaryPCA_image(summary2)
 dev.off()
 
 
