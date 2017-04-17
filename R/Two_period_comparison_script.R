@@ -10,18 +10,18 @@
 #### Compute Colwell index for temperature and precipitation data
 ### Step 1. period of 1991-2012
 # temperature - Run time: ~ 1 hour 
-#PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
-#
-## precipitation - Run time: ~ 1 hour 
-#PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
-#
-#
-#### step 2. period of 1901-1990
-## temperature - Run time: ~ 2.5 hour 
-#PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
-#
-## precipitation - Run time: ~ 2.5 hour 
-#PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
+PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation - Run time: ~ 1 hour 
+PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
+
+
+### step 2. period of 1901-1990
+# temperature - Run time: ~ 2.5 hour 
+PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
+
+# precipitation - Run time: ~ 2.5 hour 
+PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
 
 ### Step 3. compare the spatial and biome-specific differences between the two time period
 # spatial comparisons

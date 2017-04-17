@@ -330,7 +330,7 @@ dev.off()
 #### Sensitivity analysis of predictability over time
 ### Step 1. Sourcing two period analyses codes
 ### Default setting: do not perform two-periods sensitivity analysis
-two_periods_analysis <- T
+two_periods_analysis <- F
 if(two_periods_analysis == T) {
     source("R/Two_period_comparison_script.R")
 }
