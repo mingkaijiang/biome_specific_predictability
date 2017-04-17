@@ -180,19 +180,6 @@ dev.off()
 ####################################################################################
 #### Case studies to illustrate usefulness of colwell index 
 
-### Case 2. Tasmania
-# Step 1. Extract Tasmania and check with the global climate
-pdf(paste0(analysesDir, "/Tasmania_maps.pdf"),
-    width = 10, height = 8)
-Tasmania_process(plotDF)
-dev.off()
-
-# Step 2. compare Tasmania to other regions
-pdf(paste0(analysesDir, "/Tasmania_compare.pdf"),
-    width = 10, height = 8)
-Tasmania_compare(plotDF)
-dev.off()
-
 ### Case 3. Australia
 # Step 1. Extract Australia and check with the global climate
 pdf(paste0(analysesDir, "/Australia_maps.pdf"),
