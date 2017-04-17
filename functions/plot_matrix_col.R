@@ -3,7 +3,7 @@
 plotMatrixCol <- function(inDF, title.name) {
     
     # library
-    library(gplots)
+    #library(gplots)
     
     # need data as matrix
     #mm <- matrix(rexp(196), 14)

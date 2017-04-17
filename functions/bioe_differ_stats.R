@@ -135,8 +135,9 @@ BiomeDifferStats <- function(inDF) {
         }  # j loop
     }   # i loop
     
-    #outDF <- cbind(mmP, mmC, mmM)
-    #return(outDF)
+    mmP[upper.tri(mmP)] <- NA
+    mmC[upper.tri(mmC)] <- NA
+    mmM[upper.tri(mmM)] <- NA
     
     # Plottings
     plotMatrixCol(mmP, "Predictability")
