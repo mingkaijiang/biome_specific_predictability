@@ -55,41 +55,12 @@ prec_detrend(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
-### Step 1. entire period of 1901-2012
+### Entire period of 1901-2012
 # temperature - Run time: ~ 3 hour 
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
 # precipitation - Run time: ~ 3 hour 
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
-
-
-### Step 2. period of 1991-2012
-# temperature - Run time: ~ 1 hour 
-PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation - Run time: ~ 1 hour 
-PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
-
-
-### step 3. period of 1901-1990
-# temperature - Run time: ~ 2.5 hour 
-PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation - Run time: ~ 2.5 hour 
-PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
-
-### Step 4. compare the spatial and biome-specific differences between the two time period
-# spatial comparisons
-pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
-    width = 10, height = 8)
-two_period_spatial_diff()
-dev.off()
-
-# biome-specific comparisons
-pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
-    width = 10, height = 8)
-two_period_biome_diff()
-dev.off()
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums
@@ -355,6 +326,16 @@ dev.off()
 pdf(paste0(analysesDir, "/BiomeDiffer_Stats.pdf"))
 BiomeDifferStats(plotDF)
 dev.off()
+
+####################################################################################
+#### Sensitivity analysis of predictability over time
+### Step 1. Sourcing two period analyses codes
+### Default setting: do not perform two-periods sensitivity analysis
+two_periods_analysis = F
+if(two_periods_anlysis == T) {
+    source("R/Two_period_comparison_script.R")
+}
+
 
 ####################################################################################
 #### End of analysis, restoring settings

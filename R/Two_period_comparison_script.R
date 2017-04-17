@@ -7,15 +7,6 @@
 #### 
 
 ####################################################################################
-#### Make sure everything is clear
-rm(list=ls(all=TRUE))
-
-#### prepare wk spaces and libraries
-source("R/prepare_R.R")
-
-#### Assume the main program has completed
-
-####################################################################################
 #### Compute Colwell index for temperature and precipitation data
 ### Step 2. period of 1991-2012
 # temperature - Run time: ~ 1 hour 
@@ -123,35 +114,6 @@ dev.off()
 pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1991_2012.pdf"))
 SummaryPCA_image(summary2)
 dev.off()
-
-
-####################################################################################
-#### Plot all the globally gridded maps, steps 3-4 just split step 2
-### Step 1. Plot global biome distribution
-pdf(paste0(analysesDir, "/global_biome_plot.pdf"),
-    width=10, height=8)
-biome_plot(plotDF)
-dev.off()
-
-# Step 2. Create pdf file of all climate-related global maps
-pdf(paste0(analysesDir, "/global_maps_of_all_climate.pdf"),
-    width = 10, height = 8)
-PlotMaps(plotDF)
-dev.off()
-
-
-# Step 3. Create pdf file of global maps
-pdf(paste0(analysesDir, "/global_maps_of_PCM.pdf"),
-    width = 10, height = 9)
-plot_PCM_maps(plotDF)
-dev.off()
-
-# Step 4. create pdf file of global maps
-pdf(paste0(analysesDir, "/global_maps_of_annual_climate.pdf"),
-    width = 8, height = 6)
-plot_maps_annual(plotDF)
-dev.off()
-
 
 ####################################################################################
 #### Conduct biome-specific analyses and plottings
