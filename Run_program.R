@@ -158,12 +158,11 @@ dev.off()
 
 ####################################################################################
 #### Conduct biome-specific analyses and plottings
-
 ### Step 1.  Plot all data points on 2-d space
 # 2-d basic plot
-pdf(paste0(analysesDir, "/Biome_all_normal.pdf"))
-plot_biome_all(plotDF)
-dev.off()
+#pdf(paste0(analysesDir, "/Biome_all_normal.pdf"))
+#plot_biome_all(plotDF)
+#dev.off()
 
 # 2-d bagplot
 pdf(paste0(analysesDir, "/Biome_bagplot_normal.pdf"),
@@ -315,9 +314,9 @@ dev.off()
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
 # Step 1. Individual biome comparison - not recommended to run
-pdf(paste0(analysesDir, "/BiomeDiffer.pdf"))
-BiomeDifferPlot(plotDF)
-dev.off()
+# pdf(paste0(analysesDir, "/BiomeDiffer.pdf"))
+# BiomeDifferPlot(plotDF)
+# dev.off()
 
 # Step 2. Compare 2 biomes at one time where they overlap in MAT and MAP
 #         if prec P and temp P differ among bomes

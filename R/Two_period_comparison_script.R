@@ -117,173 +117,44 @@ dev.off()
 
 ####################################################################################
 #### Conduct biome-specific analyses and plottings
-
-### Step 1.  Plot all data points on 2-d space
-# 2-d basic plot
-pdf(paste0(analysesDir, "/Biome_all_normal.pdf"))
-plot_biome_all(plotDF)
-dev.off()
-
-# 2-d bagplot
-pdf(paste0(analysesDir, "/Biome_bagplot_normal.pdf"),
-    width = 22, height = 26)
-biome_bag_plot(plotDF)
-dev.off()
+### Step 1. basic 2-d plots
 
 # 2-d density plot  - takes very long to run!
-pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
+# pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
-biome_density_plot(plotDF)
-dev.off()
+# biome_density_plot(plotDF)
+# dev.off()
 
 
 ### Step 2. kernel density plot
-pdf(paste0(analysesDir, "/kernel_density.pdf"))
-kernel_multi(plotDF)
-dev.off()
-
-### Step 3. biome specific Ie factor plot
-pdf(paste0(analysesDir, "/biome_Ie.pdf"))
-Ieplot(plotDF)
-dev.off()
+# pdf(paste0(analysesDir, "/kernel_density.pdf"))
+# kernel_multi(plotDF)
+# dev.off()
 
 ### Step 4. PCA analysis  - takes very long to run!
 # PCA analysis for all data, and output PC12 onto CRU grids
-pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
-TotalPCA(plotDF)
-dev.off()
+# pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
+# TotalPCA(plotDF)
+# dev.off()
 
 
 # biome specific PCA analysis - takes very long to run!
-pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
-BiomePCA(plotDF)
-dev.off()
-
-
-####################################################################################
-#### Prepare subset of data: only the 50th percentile closest to mean of:
-#### 1. temp vs. prec
-#### 2. temp P vs. prec P
-#### 3. temp C vs. prec C
-#### 4. temp M vs. prec M
-
-### Step 1. subsetting
-abs_sub <- Percentile50_absolute(plotDF)
-p_sub <- Percentile50_p(plotDF)
-c_sub <- Percentile50_c(plotDF)
-m_sub <- Percentile50_m(plotDF)
-
-### Step 2. plotting
-# Plot bagplot 50th percentile data
-pdf(paste0(analysesDir, "/Biome_bagplot_50.pdf"),
-    width = 22, height = 26)
-plot50th(abs_sub, p_sub, plotDF)
-dev.off()
-
-# Plot spatially the 50th percentile data
-pdf(paste0(analysesDir, "/Spatial_50th.pdf"),
-    width = 28, height = 16)
-spatial50(abs_sub, p_sub)
-dev.off()
-
-
-####################################################################################
-#### Case studies to illustrate usefulness of colwell index 
-### Case 1. Australian ozflux sites
-# Step 1. Australia continental climate maps
-pdf(paste0(analysesDir, "/Oz_maps_of_climate.pdf"),
-    width = 10, height = 8)
-Aus_Plot(plotDF)
-dev.off()
-
-# Step 2. Ozflux site extractions
-ozDF <- ozflux_extraction(plotDF)
-
-# Step 3. plot ozflux comparisons
-pdf(paste0(analysesDir, "/Oz_barplot.pdf"))
-OzPlot(ozDF)
-dev.off()
-
-# Step 4. two site comparison - extracting points  - may not needed
-oz_summary <- TwoSites_summary(ozDF)
-
-# step 5. two site time series plot
-pdf(paste0(analysesDir, "/Oz_timeseries.pdf"),
-    width = 10, height = 8)
-TwoSites_timeseries(ozDF)
-dev.off()
-
-### Case 2. Tasmania
-# Step 1. Extract Tasmania and check with the global climate
-pdf(paste0(analysesDir, "/Tasmania_maps.pdf"),
-    width = 10, height = 8)
-Tasmania_process(plotDF)
-dev.off()
-
-# Step 2. compare Tasmania to other regions
-pdf(paste0(analysesDir, "/Tasmania_compare.pdf"),
-    width = 10, height = 8)
-Tasmania_compare(plotDF)
-dev.off()
-
-### Case 3. Australia
-# Step 1. Extract Australia and check with the global climate
-pdf(paste0(analysesDir, "/Australia_maps.pdf"),
-    width = 14, height = 12)
-Australia_process(plotDF)
-dev.off()
-
-# Step 2. 
-pdf(paste0(analysesDir, "/Australia_compare.pdf"),
-    width = 10, height = 8)
-Australia_compare(plotDF)
-dev.off()
-
-# Step 3. 
-# Extract Australia and check with the global climate
-pdf(paste0(analysesDir, "/Australia_maps_image.pdf"),
-    width = 14, height = 10)
-Australia_process_map(plotDF)
-dev.off()
-
-# Step 4. Biome #4
-pdf(paste0(analysesDir, "/Australia_4.pdf"))
-Australia_compare_4(plotDF)
-dev.off()
-
-# Step 5. Biome #7
-pdf(paste0(analysesDir, "/Australia_7.pdf"))
-Australia_compare_7(plotDF)
-dev.off()
-
-# Step 6. Biome #8
-pdf(paste0(analysesDir, "/Australia_8.pdf"))
-Australia_compare_8(plotDF)
-dev.off()
-
-# Step 7. Biome #12
-pdf(paste0(analysesDir, "/Australia_12.pdf"))
-Australia_compare_12(plotDF)
-dev.off()
-
-# Step 8. Biome #13
-pdf(paste0(analysesDir, "/Australia_13.pdf"))
-Australia_compare_13(plotDF)
-dev.off()
+# pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
+# BiomePCA(plotDF)
+# dev.off()
 
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
-# Step 1. Individual biome comparison - not recommended to run
-pdf(paste0(analysesDir, "/BiomeDiffer.pdf"))
-BiomeDifferPlot(plotDF)
-dev.off()
-
 # Step 2. Compare 2 biomes at one time where they overlap in MAT and MAP
 #         if prec P and temp P differ among bomes
 #         and the subsequent C and M relationships
 #         Plot a matrix and fill color
-pdf(paste0(analysesDir, "/BiomeDiffer_Stats.pdf"))
-BiomeDifferStats(plotDF)
+pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1901_1990.pdf"))
+BiomeDifferStats(plotDF1)
+dev.off()
+
+pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1991_2012.pdf"))
+BiomeDifferStats(plotDF2)
 dev.off()
 
 ####################################################################################
