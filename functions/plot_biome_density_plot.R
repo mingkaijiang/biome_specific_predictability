@@ -21,9 +21,18 @@ biome_density_plot <- function(inDF) {
         # subsetting dataframe
         DF <- data.frame(plotDF2[plotDF2$BIOME == i, "temp"],
                          plotDF2[plotDF2$BIOME == i, "prec_sum"])
-        # kernel density estimation
-        H <- Hpi(x=DF)      # optimal bandwidth estimation
-        est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
+        
+        l <- nrow(DF)
+        
+        if(l <= 1000) {
+            H <- Hpi(x=DF)      # optimal bandwidth estimation
+            est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
+        } else {
+            DF.sub <- DF[sample(nrow(DF), 1000),]
+            # kernel density estimation
+            H <- Hpi(x=DF.sub)      # optimal bandwidth estimation
+            est<- kde(x=DF.sub, H=H, compute.cont=TRUE)     # kernel density estimation
+        }
         
         # set contour probabilities for drawing contour levels
         cl<-contourLevels(est, prob=c(0.5, 0.05, 0.001), approx=TRUE)
@@ -43,9 +52,22 @@ biome_density_plot <- function(inDF) {
         # subsetting dataframe
         DF <- data.frame(plotDF2[plotDF2$BIOME == i, "tempP"],
                          plotDF2[plotDF2$BIOME == i, "precP"])
+        l <- nrow(DF)
+        
+        if(l <= 1000) {
+            H <- Hpi(x=DF)      # optimal bandwidth estimation
+            est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
+        } else {
+            DF.sub <- DF[sample(nrow(DF), 1000),]
+            # kernel density estimation
+            H <- Hpi(x=DF.sub)      # optimal bandwidth estimation
+            est<- kde(x=DF.sub, H=H, compute.cont=TRUE)     # kernel density estimation
+        }
+        
+        
         # kernel density estimation
-        H <- Hpi(x=DF)      # optimal bandwidth estimation
-        est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
+        H <- Hpi(x=DF.sub)      # optimal bandwidth estimation
+        est<- kde(x=DF.sub, H=H, compute.cont=TRUE)     # kernel density estimation
         
         # set contour probabilities for drawing contour levels
         cl<-contourLevels(est, prob=c(0.5, 0.05, 0.001), approx=TRUE)

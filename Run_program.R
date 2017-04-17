@@ -147,7 +147,7 @@ dev.off()
 # hence, use a subset of data by drawing random points from the data
 pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
-system.time(biome_density_plot(plotDF))
+biome_density_plot(plotDF)
 dev.off()
 
 
