@@ -8,6 +8,7 @@
 if(!require(pacman))install.packages("pacman")
 pacman::p_load(ncdf4,
                data.table,
+               spatstat,
                psych,
                fmsb,
                ks,
