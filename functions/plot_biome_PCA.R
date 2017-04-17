@@ -63,11 +63,11 @@ BiomePCA <- function(inDF) {
         
         l <- nrow(pc12)
         
-        if(l <= 2000) {
+        if(l <= 1000) {
             H <- Hpi(x=pc12)      # optimal bandwidth estimation
             est<- kde(x=pc12, H=H, compute.cont=TRUE)     # kernel density estimation
         } else {
-            pc12.sub <- pc12[sample(nrow(pc12), 2000),]
+            pc12.sub <- pc12[sample(nrow(pc12), 1000),]
             # kernel density estimation
             H <- Hpi(x=pc12.sub)      # optimal bandwidth estimation
             est<- kde(x=pc12.sub, H=H, compute.cont=TRUE)     # kernel density estimation

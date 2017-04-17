@@ -145,7 +145,7 @@ dev.off()
 # 2-d density plot  
 # A very time-consuming processing if use the entire dataframe
 # hence, use a subset of data by drawing random points from the data
-# currently the number of points to be randomly chosen is n = 2000
+# currently the number of points to be randomly chosen is n = 1000
 pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
 biome_density_plot(plotDF)
@@ -168,10 +168,10 @@ TotalPCA(plotDF)
 dev.off()
 
 
-# biome specific PCA analysis - takes very long to run!
+# biome specific PCA analysis 
 # A very time-consuming processing if use the entire dataframe
 # hence, use a subset of data by drawing random points from the data
-# currently the number of points to be randomly chosen is n = 2000
+# currently the number of points to be randomly chosen is n = 1000
 pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
 BiomePCA(plotDF)
 dev.off()
@@ -184,24 +184,24 @@ dev.off()
 #### 3. temp C vs. prec C
 #### 4. temp M vs. prec M
 
-### Step 1. subsetting
-abs_sub <- Percentile50_absolute(plotDF)
-p_sub <- Percentile50_p(plotDF)
-c_sub <- Percentile50_c(plotDF)
-m_sub <- Percentile50_m(plotDF)
-
-### Step 2. plotting
-# Plot bagplot 50th percentile data
-pdf(paste0(analysesDir, "/Biome_bagplot_50.pdf"),
-    width = 22, height = 26)
-plot50th(abs_sub, p_sub, plotDF)
-dev.off()
-
-# Plot spatially the 50th percentile data
-pdf(paste0(analysesDir, "/Spatial_50th.pdf"),
-    width = 28, height = 16)
-spatial50(abs_sub, p_sub)
-dev.off()
+#### Step 1. subsetting
+#abs_sub <- Percentile50_absolute(plotDF)
+#p_sub <- Percentile50_p(plotDF)
+#c_sub <- Percentile50_c(plotDF)
+#m_sub <- Percentile50_m(plotDF)
+#
+#### Step 2. plotting
+## Plot bagplot 50th percentile data
+#pdf(paste0(analysesDir, "/Biome_bagplot_50.pdf"),
+#    width = 22, height = 26)
+#plot50th(abs_sub, p_sub, plotDF)
+#dev.off()
+#
+## Plot spatially the 50th percentile data
+#pdf(paste0(analysesDir, "/Spatial_50th.pdf"),
+#    width = 28, height = 16)
+#spatial50(abs_sub, p_sub)
+#dev.off()
 
 
 ####################################################################################
