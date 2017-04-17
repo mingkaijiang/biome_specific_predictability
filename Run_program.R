@@ -145,6 +145,7 @@ dev.off()
 # 2-d density plot  
 # A very time-consuming processing if use the entire dataframe
 # hence, use a subset of data by drawing random points from the data
+# currently the number of points to be randomly chosen is n = 2000
 pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
 biome_density_plot(plotDF)
@@ -161,12 +162,16 @@ dev.off()
 # PCA analysis for all data, and output PC12 onto CRU grids
 # A very time-consuming processing if use the entire dataframe
 # hence, use a subset of data by drawing random points from the data
+# number of points drawn are shown in plots
 pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
 TotalPCA(plotDF)
 dev.off()
 
 
 # biome specific PCA analysis - takes very long to run!
+# A very time-consuming processing if use the entire dataframe
+# hence, use a subset of data by drawing random points from the data
+# currently the number of points to be randomly chosen is n = 2000
 pdf(paste0(analysesDir, "/PCA_analysis.pdf"))
 BiomePCA(plotDF)
 dev.off()

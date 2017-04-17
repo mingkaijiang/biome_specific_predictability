@@ -24,11 +24,11 @@ biome_density_plot <- function(inDF) {
         
         l <- nrow(DF)
         
-        if(l <= 1000) {
+        if(l <= 2000) {
             H <- Hpi(x=DF)      # optimal bandwidth estimation
             est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
         } else {
-            DF.sub <- DF[sample(nrow(DF), 1000),]
+            DF.sub <- DF[sample(nrow(DF), 2000),]
             # kernel density estimation
             H <- Hpi(x=DF.sub)      # optimal bandwidth estimation
             est<- kde(x=DF.sub, H=H, compute.cont=TRUE)     # kernel density estimation
@@ -54,11 +54,11 @@ biome_density_plot <- function(inDF) {
                          plotDF2[plotDF2$BIOME == i, "precP"])
         l <- nrow(DF)
         
-        if(l <= 1000) {
+        if(l <= 2000) {
             H <- Hpi(x=DF)      # optimal bandwidth estimation
             est<- kde(x=DF, H=H, compute.cont=TRUE)     # kernel density estimation
         } else {
-            DF.sub <- DF[sample(nrow(DF), 1000),]
+            DF.sub <- DF[sample(nrow(DF), 2000),]
             # kernel density estimation
             H <- Hpi(x=DF.sub)      # optimal bandwidth estimation
             est<- kde(x=DF.sub, H=H, compute.cont=TRUE)     # kernel density estimation

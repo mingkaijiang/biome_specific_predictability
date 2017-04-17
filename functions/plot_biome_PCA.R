@@ -61,9 +61,17 @@ BiomePCA <- function(inDF) {
         x.lab <- paste("PC1 [", round(PoV[[1]]*100, 0), "%]", sep="")
         y.lab <- paste("PC2 [", round(PoV[[2]]*100, 0), "%]", sep="")
         
-        ################ KERNEL DENSITY ESTIMATION ##############################
-        H <- Hpi(x=pc12)      # optimal bandwidth estimation
-        est<- kde(x=pc12, H=H, compute.cont=TRUE)     # kernel density estimation
+        l <- nrow(pc12)
+        
+        if(l <= 2000) {
+            H <- Hpi(x=pc12)      # optimal bandwidth estimation
+            est<- kde(x=pc12, H=H, compute.cont=TRUE)     # kernel density estimation
+        } else {
+            pc12.sub <- pc12[sample(nrow(pc12), 2000),]
+            # kernel density estimation
+            H <- Hpi(x=pc12.sub)      # optimal bandwidth estimation
+            est<- kde(x=pc12.sub, H=H, compute.cont=TRUE)     # kernel density estimation
+        }
         
         # set contour probabilities for drawing contour levels
         cl<-contourLevels(est, prob=c(0.5, 0.05, 0.001), approx=TRUE)
@@ -84,5 +92,6 @@ BiomePCA <- function(inDF) {
         title(paste(biome[i]))
     }
     
-    #return(outDF)
+    write.table(outDF, paste0(dataDir, "biome_specific_PCA_statistics.csv"),
+                col.names=T, row.names=F, sep=",")
 }
