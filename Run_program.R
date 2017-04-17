@@ -26,32 +26,14 @@ download_CRU_data()
 ####################################################################################
 #### Preliminary processing CRU climate data 
 
-#### Step 1. convert from nc to csv file format
+### Step 1. convert from nc to csv file format
 ## CRU temperature
-#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
-#          outFile=paste0(dataDir,"/temp_DF.csv"))
-#
-## CRU precipitation
-#nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
-#          outFile=paste0(dataDir,"/prec_DF.csv"))
-#
-#
-#### Step 2. remove duplicated data entries  -- Note: may not needed.
-## temperature
-#remove_duplicate(inFile=paste0(dataDir,"/temp_DF.csv"),
-#                 outFile=paste0(dataDir,"/temp_DF_processed.csv"))
-#
-## precipitation
-#remove_duplicate(inFile=paste0(dataDir,"/prec_DF.csv"),
-#                 outFile=paste0(dataDir,"/prec_DF_processed.csv"))
+nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
+          outFile=paste0(dataDir,"/temp_DF.csv"))
 
-#### Step 3. climate data detrending  -- Note: not needed for now
-# temperature
-temp_detrend(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation
-prec_detrend(sourceDir = dataDir, destDir = dataDir)
-
+# CRU precipitation
+nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
+          outFile=paste0(dataDir,"/prec_DF.csv"))
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
@@ -159,11 +141,6 @@ dev.off()
 ####################################################################################
 #### Conduct biome-specific analyses and plottings
 ### Step 1.  Plot all data points on 2-d space
-# 2-d basic plot
-#pdf(paste0(analysesDir, "/Biome_all_normal.pdf"))
-#plot_biome_all(plotDF)
-#dev.off()
-
 # 2-d bagplot
 pdf(paste0(analysesDir, "/Biome_bagplot_normal.pdf"),
     width = 22, height = 26)
@@ -173,7 +150,7 @@ dev.off()
 # 2-d density plot  - takes very long to run!
 pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
-biome_density_plot(plotDF)
+system.time(biome_density_plot(plotDF))
 dev.off()
 
 
@@ -182,12 +159,8 @@ pdf(paste0(analysesDir, "/kernel_density.pdf"))
 kernel_multi(plotDF)
 dev.off()
 
-### Step 3. biome specific Ie factor plot
-pdf(paste0(analysesDir, "/biome_Ie.pdf"))
-Ieplot(plotDF)
-dev.off()
 
-### Step 4. PCA analysis  - takes very long to run!
+### Step 3. PCA analysis  - takes very long to run!
 # PCA analysis for all data, and output PC12 onto CRU grids
 pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
 TotalPCA(plotDF)
