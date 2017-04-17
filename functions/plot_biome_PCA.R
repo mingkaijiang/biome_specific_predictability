@@ -92,6 +92,6 @@ BiomePCA <- function(inDF) {
         title(paste(biome[i]))
     }
     
-    write.table(outDF, paste0(dataDir, "biome_specific_PCA_statistics.csv"),
+    write.table(outDF, paste0(dataDir, "/biome_specific_PCA_statistics.csv"),
                 col.names=T, row.names=F, sep=",")
 }
