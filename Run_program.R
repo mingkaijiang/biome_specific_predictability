@@ -142,7 +142,9 @@ pdf(paste0(analysesDir, "/Biome_bagplot_normal.pdf"),
 biome_bag_plot(plotDF)
 dev.off()
 
-# 2-d density plot  - takes very long to run!
+# 2-d density plot  
+# A very time-consuming processing if use the entire dataframe
+# hence, use a subset of data by drawing random points from the data
 pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
     width = 22, height = 26)
 system.time(biome_density_plot(plotDF))
@@ -155,8 +157,10 @@ kernel_multi(plotDF)
 dev.off()
 
 
-### Step 3. PCA analysis  - takes very long to run!
+### Step 3. PCA analysis 
 # PCA analysis for all data, and output PC12 onto CRU grids
+# A very time-consuming processing if use the entire dataframe
+# hence, use a subset of data by drawing random points from the data
 pdf(paste0(analysesDir, "/PCA_all_analysis.pdf"))
 TotalPCA(plotDF)
 dev.off()

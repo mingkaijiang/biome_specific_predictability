@@ -5,7 +5,7 @@ kernel_multi <- function(inDF) {
     
     newDF <- inDF
     # library
-    require(sm)
+    #require(sm)
     
     # set plot structure
     m <- matrix(c(1,2,3,4,5,5), nrow=3, ncol=2,byrow=T)
