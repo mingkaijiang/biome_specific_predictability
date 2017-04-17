@@ -57,7 +57,7 @@ precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
 ####################################################################################
 #### Combine all dataframes
 ### Step 1. Project BIOME information onto PCM file
-biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
+biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    
              tempFile=paste0(dataDir, "/temp_PCM.csv"),
              precFile=paste0(dataDir, "/pre_PCM.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"))
@@ -82,11 +82,6 @@ summary <- summaryPrep(plotDF)
 pdf(paste0(analysesDir, "/summary_2_d.pdf"),
     width = 10, height = 8)
 summary_2d_image(summary)
-dev.off()
-
-# Plot radar plots for summary data, 1 biome per plot
-pdf(paste0(analysesDir, "/radar_plot_individual.pdf"))
-radar_summary(summary)
 dev.off()
 
 # Plot radar plots for summary data, all biomes 1 plot
