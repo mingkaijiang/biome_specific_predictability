@@ -27,11 +27,11 @@ download_CRU_data()
 #### Preliminary processing CRU climate data 
 
 ### Step 1. convert from nc to csv file format
-## CRU temperature
-system.time(nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
-          outFile=paste0(dataDir,"/temp_DF.csv")))
+## CRU temperature   - run time: 15 mins
+nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
+          outFile=paste0(dataDir,"/temp_DF.csv"))
 
-# CRU precipitation
+# CRU precipitation  - run time: 15 mins
 nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
           outFile=paste0(dataDir,"/prec_DF.csv"))
 
