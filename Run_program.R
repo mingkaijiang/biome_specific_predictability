@@ -38,10 +38,10 @@ nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
 ### Entire period of 1901-2012
-# temperature - Run time: ~ 3 hour 
+# temperature - Run time: ~ 2.6 hour 
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 3 hour 
+# precipitation - Run time: ~ 2.6 hour 
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
