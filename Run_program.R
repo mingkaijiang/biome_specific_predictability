@@ -46,11 +46,11 @@ PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums
-# temperature
+# temperature - Run time: ~ 1.5 hours
 tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
           outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
 
-# precipitation
+# precipitation - Run time: ~ 1.5 hours
 precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
              outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
