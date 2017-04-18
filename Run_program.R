@@ -64,7 +64,7 @@ biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),
 
 ### Step 2. Save PCM with prec means and sums and temp means
 match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
-             precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+             precFile=paste0(dataDir, "/prec_DF_annual_sum.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"),
              fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
