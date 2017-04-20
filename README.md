@@ -17,9 +17,9 @@ The code structures are:
 There are several issues you should be aware of before initiating the simulation:
 1. The raw data should be downloaded first and put into the correct directory "data/raw_data". There is a function
 to download the data but it just prints out where the data is and what name you need to download instead of downloading the data for you.
-2. Many functions are not optimized for computing-efficiency so the entire analysis can take very long to run! These functions are marked with comment in the "Run_program.R" script, so please pay attention to those comments. 
-3. The entire repository includes all functions used in performing the analyses - many of the functions
-are no longer needed for the analyses included in the manuscript. 
+2. Some functions take some time to run (already commented with run time length). 
+3. Some functions only include partial data because they made no difference when compared to results generated using the entire data, so to improve computation efficiency, only a subset of data was used. 
+4. The entire repository includes all functions used in performing the analyses - many of the functions are no longer needed for the manuscript, but may be of interests to some other studies. 
 
 
 # Author information
