@@ -7,7 +7,7 @@ PCM_prec<-function(sourceDir = DAILY.DATA.DIRECTORY, destDir = DAILY.OUTPUT.DIRE
 {
     require(data.table)
     
-    inName <- paste(sourceDir, "pre_DF.csv",sep="/")
+    inName <- paste(sourceDir, "prec_DF.csv",sep="/")
     outName <- paste(destDir, "pre_PCM.csv", sep="/")
     
     input <- fread(inName, sep=",", header=T)

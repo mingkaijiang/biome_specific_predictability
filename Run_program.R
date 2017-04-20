@@ -27,30 +27,30 @@ download_CRU_data()
 #### Preliminary processing CRU climate data 
 
 ### Step 1. convert from nc to csv file format
-## CRU temperature
+## CRU temperature   - run time: 15 mins
 nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.tmp.dat.nc"),
           outFile=paste0(dataDir,"/temp_DF.csv"))
 
-# CRU precipitation
+# CRU precipitation  - run time: 15 mins
 nc_to_csv(inFile=paste0(ncDir, "/cru_ts3.21.1901.2012.pre.dat.nc"),
           outFile=paste0(dataDir,"/prec_DF.csv"))
 
 ####################################################################################
 #### Compute Colwell index for temperature and precipitation data
 ### Entire period of 1901-2012
-# temperature - Run time: ~ 3 hour 
+# temperature - Run time: ~ 2.6 hour 
 PCM_temp(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 3 hour 
+# precipitation - Run time: ~ 2.6 hour 
 PCM_prec(sourceDir = dataDir, destDir = dataDir)
 
 ####################################################################################
 #### Calculate climate annual mean and annual sums
-# temperature
+# temperature - Run time: ~ 1.5 hours
 tempMeans(inFile=paste0(dataDir, "/temp_DF.csv"),
           outFile=paste0(dataDir, "/temp_DF_annual_mean.csv"))
 
-# precipitation
+# precipitation - Run time: ~ 1.5 hours
 precMeanSums(inFile=paste0(dataDir, "/prec_DF.csv"),
              outFile=paste0(dataDir, "/prec_DF_annual_sum.csv"))
 
@@ -64,7 +64,7 @@ biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),
 
 ### Step 2. Save PCM with prec means and sums and temp means
 match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
-             precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+             precFile=paste0(dataDir, "/prec_DF_annual_sum.csv"), 
              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM.csv"),
              fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
