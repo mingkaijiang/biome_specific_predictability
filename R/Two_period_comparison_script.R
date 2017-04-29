@@ -96,20 +96,11 @@ pdf(paste0(analysesDir, "/radar_plot_combined_1991_2012.pdf"),
 radar_summary_image2(summary2)
 dev.off()
 
-# PCA analysis for each biome using summary statistics
-pdf(paste0(analysesDir, "/PCA_summary_two_period_comparison.pdf"))
-SummaryPCA_comparison(summary1, summary2)
-dev.off()
-
-
 # PCA for manuscript 
-pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1901_1990.pdf"))
-SummaryPCA_image(summary1)
+pdf(paste0(analysesDir, "/PCA_summary_two_period_comparison.pdf"))
+SummaryPCA_image_comparison(summary1, summary2)
 dev.off()
 
-pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1991_2012.pdf"))
-SummaryPCA_image(summary2)
-dev.off()
 
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
