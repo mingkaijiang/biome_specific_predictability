@@ -104,11 +104,7 @@ dev.off()
 
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
-pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1901_1990.pdf"))
-BiomeDifferStats(plotDF1)
-dev.off()
-
-pdf(paste0(analysesDir, "/BiomeDiffer_Stats_1991_2012.pdf"))
-BiomeDifferStats(plotDF2)
+pdf(paste0(analysesDir, "/BiomeDiffer_Stats_two_period_comparison.pdf"))
+BiomeDifferStats_comparison(plotDF1, plotDF2)
 dev.off()
 
