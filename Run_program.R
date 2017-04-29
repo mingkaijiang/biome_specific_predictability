@@ -191,7 +191,7 @@ dev.off()
 ### Case 3. Australia
 # Step 1. 
 # Extract Australia and check with the global climate
-pdf(paste0(analysesDir, "/Australia_maps_image.pdf"),
+pdf(paste0(plotDir, "/Australia_maps_image.pdf"),
     width = 14, height = 10)
 Australia_process_map(plotDF)
 dev.off()
@@ -228,7 +228,7 @@ dev.off()
 #         if prec P and temp P differ among bomes
 #         and the subsequent C and M relationships
 #         Plot a matrix and fill color
-pdf(paste0(analysesDir, "/BiomeDiffer_Stats.pdf"))
+pdf(paste0(plotDir, "/BiomeDiffer_Stats.pdf"))
 BiomeDifferStats(plotDF)
 dev.off()
 
@@ -236,7 +236,8 @@ dev.off()
 #### Sensitivity analysis of predictability over time
 ### Step 1. Sourcing two period analyses codes
 ### Default setting: do not perform two-periods sensitivity analysis
-two_periods_analysis <- F
+two_periods_analysis <- T
+start_from_raw_data <- F
 if(two_periods_analysis == T) {
     source("R/Two_period_comparison_script.R")
 }

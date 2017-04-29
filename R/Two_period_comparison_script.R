@@ -7,61 +7,65 @@
 #### 
 
 ####################################################################################
-#### Compute Colwell index for temperature and precipitation data
-### Step 1. period of 1991-2012
-# temperature - Run time: ~ 1 hour 
-PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
 
-# precipitation - Run time: ~ 1 hour 
-PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
+if(start_from_raw_data == T) {
+    #### Compute Colwell index for temperature and precipitation data
+    ### Step 1. period of 1991-2012
+    # temperature - Run time: ~ 1 hour 
+    PCM_temp_1991_2012(sourceDir = dataDir, destDir = dataDir)
+    
+    # precipitation - Run time: ~ 1 hour 
+    PCM_prec_1991_2012(sourceDir = dataDir, destDir = dataDir)
+    
+    
+    ### step 2. period of 1901-1990
+    # temperature - Run time: ~ 2.5 hour 
+    PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
+    
+    # precipitation - Run time: ~ 2.5 hour 
+    PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
+    
+    ### Step 3. compare the spatial and biome-specific differences between the two time period
+    # spatial comparisons
+    pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
+        width = 10, height = 8)
+    two_period_spatial_diff()
+    dev.off()
+    
+    # biome-specific comparisons
+    pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
+        width = 10, height = 8)
+    two_period_biome_diff()
+    dev.off()
+    
+    ####################################################################################
+    #### Combine all dataframes
+    ### Step 1. Project BIOME information onto PCM file
+    # 1901-1990
+    biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
+                 tempFile=paste0(dataDir, "/temp_PCM_1901_1990.csv"),
+                 precFile=paste0(dataDir, "/pre_PCM_1901_1990.csv"), 
+                 pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"))
+    
+    # 1991-2012
+    biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
+                 tempFile=paste0(dataDir, "/temp_PCM_1991_2012.csv"),
+                 precFile=paste0(dataDir, "/pre_PCM_1991_2012.csv"), 
+                 pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"))
+    
+    ### Step 2. Save PCM with prec means and sums and temp means
+    # 1901-1990
+    match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
+                  precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+                  pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"),
+                  fullFile=paste0(dataDir, "/biome_temp_prec_full_1901_1990.csv"))
+    # 1991-2012
+    match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
+                  precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
+                  pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"),
+                  fullFile=paste0(dataDir, "/biome_temp_prec_full_1991_2012.csv"))
+}
 
-
-### step 2. period of 1901-1990
-# temperature - Run time: ~ 2.5 hour 
-PCM_temp_1901_1990(sourceDir = dataDir, destDir = dataDir)
-
-# precipitation - Run time: ~ 2.5 hour 
-PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
-
-### Step 3. compare the spatial and biome-specific differences between the two time period
-# spatial comparisons
-pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
-    width = 10, height = 8)
-two_period_spatial_diff()
-dev.off()
-
-# biome-specific comparisons
-pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
-    width = 10, height = 8)
-two_period_biome_diff()
-dev.off()
-
-####################################################################################
-#### Combine all dataframes
-### Step 1. Project BIOME information onto PCM file
-# 1901-1990
-biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
-             tempFile=paste0(dataDir, "/temp_PCM_1901_1990.csv"),
-             precFile=paste0(dataDir, "/pre_PCM_1901_1990.csv"), 
-             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"))
-
-# 1991-2012
-biomeProject(corFile=paste0(corDir, "/CRU_Biome.csv"),    # where does this come from?
-             tempFile=paste0(dataDir, "/temp_PCM_1991_2012.csv"),
-             precFile=paste0(dataDir, "/pre_PCM_1991_2012.csv"), 
-             pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"))
-
-### Step 2. Save PCM with prec means and sums and temp means
-# 1901-1990
-match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
-              precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
-              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1901_1990.csv"),
-              fullFile=paste0(dataDir, "/biome_temp_prec_full_1901_1990.csv"))
-# 1991-2012
-match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
-              precFile=paste0(dataDir, "/pre_DF_annual_sum.csv"), 
-              pcmFile=paste0(dataDir, "/biome_temp_prec_PCM_1991_2012.csv"),
-              fullFile=paste0(dataDir, "/biome_temp_prec_full_1991_2012.csv"))
 
 ### Step 3. Preliminary processing of the df for plotting and table purposes
 # generate temp and prec classes and ie factor

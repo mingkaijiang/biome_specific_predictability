@@ -45,28 +45,28 @@ Australia_process_map <- function(inDF) {
                                     xlab = "Temperature",cex.lab=2, cex.main=2,
                                     xlim=c(-180, 180), ylim=c(-60, 80),
                                     nx=400, ny=120))
-        world(add=T, col=adjustcolor("grey", 0.5))
+        world(add=T, col=adjustcolor("grey", 0.8))
         
         # precipitation criteria
         with(subDF.prec, quilt.plot(lon, lat, prec_sum, 
                                     xlab = "Precipitation",cex.lab=2, cex.main=2,
                                     xlim=c(-180, 180), ylim=c(-60, 80),
                                     nx=400, ny=120))
-        world(add=T, col=adjustcolor("grey", 0.5))
+        world(add=T, col=adjustcolor("grey", 0.8))
         
         # temperature P criteria
         with(subDF.prec, quilt.plot(lon, lat, tempP,cex.lab=2, cex.main=2,
                                     xlab = "Temperature predictability",
                                     xlim=c(-180, 180), ylim=c(-60, 80),
                                     nx=400, ny=120))
-        world(add=T, col=adjustcolor("grey", 0.5))
+        world(add=T, col=adjustcolor("grey", 0.8))
         
         # precipitation P criteria
         with(subDF.prec, quilt.plot(lon, lat, precP,cex.lab=2, cex.main=2,
                                     xlab = "Precipitation predictability",
                                     xlim=c(-180, 180), ylim=c(-60, 80),
                                     nx=400, ny=120))
-        world(add=T, col=adjustcolor("grey", 0.5))
+        world(add=T, col=adjustcolor("grey", 0.8))
     }
     
     #return(subDF.prec)
