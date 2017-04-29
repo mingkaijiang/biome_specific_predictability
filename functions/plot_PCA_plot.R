@@ -43,5 +43,5 @@ SummaryPCA_image <- function(inDF) {
     
     # plotting
     biplot(prin, xlab = x.lab, ylab= y.lab,
-           col=c("red","blue"))
+           col=c("red","blue"), cex = c(0.7,1.5))
 }
