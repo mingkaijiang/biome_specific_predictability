@@ -99,7 +99,7 @@ dev.off()
 # biome-specific comparisons
 pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
     width = 10, height = 8)
-two_period_biome_diff()
+two_period_biome_diff_P()
 dev.off()
 
 # spatial comparison of predictability only
