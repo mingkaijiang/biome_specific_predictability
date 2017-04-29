@@ -80,14 +80,9 @@ summary2 <- summaryPrep(plotDF2)
 
 ### Step 2. Basic summary figures
 # plot 2d with two directional error bars
-pdf(paste0(analysesDir, "/summary_2_d_1901_1990.pdf"),
+pdf(paste0(plotDir, "/summary_2_d_two_period_comparison.pdf"),
     width = 10, height = 8)
-summary_2d_image(summary1)
-dev.off()
-
-pdf(paste0(analysesDir, "/summary_2_d_1991_2012.pdf"),
-    width = 10, height = 8)
-summary_2d_image(summary2)
+summary_2d_image_comparison(summary1, summary2)
 dev.off()
 
 # Plot radar plots for summary data, all biomes 1 plot
@@ -102,13 +97,10 @@ radar_summary_image2(summary2)
 dev.off()
 
 # PCA analysis for each biome using summary statistics
-pdf(paste0(analysesDir, "/PCA_summary_1901_1990.pdf"))
-SummaryPCA(summary1)
+pdf(paste0(analysesDir, "/PCA_summary_two_period_comparison.pdf"))
+SummaryPCA_comparison(summary1, summary2)
 dev.off()
 
-pdf(paste0(analysesDir, "/PCA_summary_1991_2012.pdf"))
-SummaryPCA(summary2)
-dev.off()
 
 # PCA for manuscript 
 pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure_1901_1990.pdf"))
