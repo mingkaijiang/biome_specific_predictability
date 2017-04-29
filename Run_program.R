@@ -149,9 +149,14 @@ dev.off()
 # A very time-consuming processing if use the entire dataframe
 # hence, use a subset of data by drawing random points from the data
 # currently the number of points to be randomly chosen is n = 1000
-pdf(paste0(analysesDir, "/Biome_density_normal.pdf"),
+pdf(paste0(plotDir, "/Biome_density_normal_climate.pdf"),
     width = 22, height = 26)
-biome_density_plot(plotDF)
+biome_density_plot_climate(plotDF)
+dev.off()
+
+pdf(paste0(plotDir, "/Biome_density_normal_pcm.pdf"),
+    width = 22, height = 26)
+biome_density_plot_pcm(plotDF)
 dev.off()
 
 
