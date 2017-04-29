@@ -69,7 +69,10 @@ match_climate(tempFile=paste0(dataDir, "/temp_DF_annual_mean.csv"),
              fullFile=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
 ### Step 3. Preliminary processing of the df for plotting and table purposes
-# generate temp and prec classes and ie factor
+#### generate temp and prec classes and ie factor
+
+### Note: You can start your analysis from here if you've performed the previous
+###       analyses already and are re-doing some analyses based on the predictability statistics
 plotDF <- classPrep(inPath=paste0(dataDir, "/biome_temp_prec_full.csv"))
 
 ####################################################################################
@@ -86,7 +89,7 @@ dev.off()
 
 # Plot radar plots for summary data, all biomes 1 plot
 pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
-    width = 8, height = 12)
+    width = 8, height = 10)
 radar_summary_image2(summary)
 dev.off()
 

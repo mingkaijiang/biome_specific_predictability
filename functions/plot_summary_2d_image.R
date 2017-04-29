@@ -31,7 +31,7 @@ summary_2d_image <- function(summary) {
     par(mar = rep(2, 4))
     plot(1, type="n", axes=F, xlab="", ylab="")
     legend(x="bottom",inset=0, legend = biomeN, fill=color.list, 
-           cex=1.2,ncol=4)
+           cex=1.15,ncol=5)
     
     
     par(opar)
