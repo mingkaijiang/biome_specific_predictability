@@ -25,18 +25,6 @@ if(start_from_raw_data == T) {
     # precipitation - Run time: ~ 2.5 hour 
     PCM_prec_1901_1990(sourceDir = dataDir, destDir = dataDir)
     
-    ### Step 3. compare the spatial and biome-specific differences between the two time period
-    # spatial comparisons
-    pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
-        width = 10, height = 8)
-    two_period_spatial_diff()
-    dev.off()
-    
-    # biome-specific comparisons
-    pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
-        width = 10, height = 8)
-    two_period_biome_diff()
-    dev.off()
     
     ####################################################################################
     #### Combine all dataframes
@@ -101,6 +89,24 @@ pdf(paste0(analysesDir, "/PCA_summary_two_period_comparison.pdf"))
 SummaryPCA_image_comparison(summary1, summary2)
 dev.off()
 
+### Step 3. compare the spatial and biome-specific differences between the two time period
+# spatial comparisons
+pdf(paste0(analysesDir, "/two_period_spatial_comparisons.pdf"),
+    width = 10, height = 8)
+two_period_spatial_diff()
+dev.off()
+
+# biome-specific comparisons
+pdf(paste0(analysesDir, "/two_period_biome_comparisons.pdf"),
+    width = 10, height = 8)
+two_period_biome_diff()
+dev.off()
+
+# spatial comparison of predictability only
+pdf(paste0(plotDir, "/two_period_spatial_comparisons_predictability.pdf"),
+    width = 10, height = 8)
+two_period_spatial_diff_P()
+dev.off()
 
 ####################################################################################
 #### Checking if P controls biome differences when temp and prec failed
