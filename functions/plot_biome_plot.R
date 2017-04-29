@@ -18,7 +18,7 @@ biome_plot <- function(inDF) {
     par(mar = rep(2, 4))
     plot(1, type="n", axes=F, xlab="", ylab="")
     legend(x="bottom",inset=0, legend = biomeN, fill=color.list, 
-           cex=0.8,ncol=4)
+           cex=0.75,ncol=5)
     
     par(opar)
 }
