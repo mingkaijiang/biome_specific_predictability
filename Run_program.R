@@ -82,13 +82,13 @@ summary <- summaryPrep(plotDF)
 
 ### Step 2. Basic summary figures
 # plot 2d with two directional error bars
-pdf(paste0(analysesDir, "/summary_2_d.pdf"),
+pdf(paste0(plotDir, "/summary_2_d.pdf"),
     width = 12, height = 8)
 summary_2d_image(summary)
 dev.off()
 
 # Plot radar plots for summary data, all biomes 1 plot
-pdf(paste0(analysesDir, "/radar_plot_combined.pdf"),
+pdf(paste0(plotDir, "/radar_plot_combined.pdf"),
     width = 8, height = 10)
 radar_summary_image2(summary)
 dev.off()
@@ -103,7 +103,7 @@ pdf(paste0(analysesDir, "/PCA_summary.pdf"))
 SummaryPCA(summary)
 dev.off()
 
-pdf(paste0(analysesDir, "/PCA_summary_manuscript_figure.pdf"))
+pdf(paste0(plotDir, "/PCA_summary_manuscript_figure.pdf"))
 SummaryPCA_image(summary)
 dev.off()
 
@@ -111,7 +111,7 @@ dev.off()
 ####################################################################################
 #### Plot all the globally gridded maps, steps 3-4 just split step 2
 ### Step 1. Plot global biome distribution
-pdf(paste0(analysesDir, "/global_biome_plot.pdf"),
+pdf(paste0(plotDir, "/global_biome_plot.pdf"),
     width=10, height=8)
 biome_plot(plotDF)
 dev.off()
@@ -124,14 +124,14 @@ dev.off()
 
 
 # Step 3. Create pdf file of global maps
-pdf(paste0(analysesDir, "/global_maps_of_PCM.pdf"),
+pdf(paste0(plotDir, "/global_maps_of_PCM.pdf"),
     width = 10, height = 9)
 plot_PCM_maps(plotDF)
 dev.off()
 
 # Step 4. create pdf file of global maps
-pdf(paste0(analysesDir, "/global_maps_of_annual_climate.pdf"),
-    width = 8, height = 6)
+pdf(paste0(plotDir, "/global_maps_of_annual_climate.pdf"),
+    width = 6, height = 6)
 plot_maps_annual(plotDF)
 dev.off()
 
